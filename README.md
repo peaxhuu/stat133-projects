@@ -7,7 +7,7 @@ Selected projects from STAT 133 (Concepts in Computing with Data), written in R 
 | [Project 2 — California ZEV Data](project2-ZEV-Tsion-AduesaSmart) | Analysis of California zero-emission vehicle data, rendered as a Typst report | Data wrangling, visualization, Quarto/Typst reporting |
 | [Project 3 — Personal Data Export](project3-personal-data) | Analysis of my own YouTube data export, presented as a slide deck ([view slides](https://peaxhuu.github.io/stat133-projects/project3-personal-data/project.html)) | Working with messy real-world exports, revealjs presentations |
 | [Project 4 — Prop 50 Redistricting Dashboard](project4-prop50-dashboard) | Interactive dashboard mapping California's Prop 50 / AB 604 district changes ([view dashboard](https://peaxhuu.github.io/stat133-projects/project4-prop50-dashboard/project.html)) | Geospatial data, mapping, Quarto dashboards |
-| [Project 5 — `bartcommute`](project5-bartcommute) | An R package that wraps the BART API for commute data | R package development, API wrapping, documentation, testing, pkgdown |
+| [Project 5 — `bartcommute`]([project5-bartcommute](https://projec5tsionsmart.netlify.app/)) | An R package that wraps the BART API for commute data | R package development, API wrapping, documentation, testing, pkgdown |
 
 ## Installing `bartcommute`
 
