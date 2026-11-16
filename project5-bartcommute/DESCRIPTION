@@ -1,0 +1,24 @@
+Package: bartcommute
+Title: Plan BART Commutes to Downtown Berkeley
+Version: 0.1.0
+Authors@R: 
+    person("Tsion-Aduesa", "Smart", , "tazismart@berkeley.edu", role = c("aut", "cre"))
+Description: Wraps the BART (Bay Area Rapid Transit) API to list stations
+    and plan trips that arrive by a given time, returning tidy data frames
+    of departure and arrival times, trip length, Clipper fare, and
+    transfers. Includes a data set of commutes from every station to
+    Downtown Berkeley.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 4.1.0)
+LazyData: true
+Config/roxygen2/version: 8.1.1
+Imports: 
+    httr2,
+    lubridate,
+    tibble
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

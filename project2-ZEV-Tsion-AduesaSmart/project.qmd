@@ -1,0 +1,268 @@
+---
+title: Zero Emissions Vehicles in California
+author: Tsion-Aduesa Smart
+format: typst
+---
+
+### Part 1: The CEC Dashboard
+
+1. How has the ZEV share of new car sales in my county changed since 2020, and how does it compare to the state?
+2. Which car brands gained or lost the most ZEV sales between 2023 and 2025?
+3. Are PHEVs becoming a bigger or smaller part of ZEV sales?
+
+### Part 2: The Data Behind the Dashboard
+
+#### Import the data
+
+```{r}
+#| message: false
+library(readxl)
+library(dplyr)
+library(tidyr)
+
+zev <- read_excel("data/New_ZEV_Sales_Last_updated_07-17-2026_ada.xlsx",
+                  sheet = "County") |>
+  rename(year = `Data Year`, quarter = Quarter, county = COUNTY,
+         fuel = FUEL_TYPE, make = MAKE, model = MODEL,
+         n = `Number of Vehicles`) |>
+  mutate(fuel = factor(fuel,
+                       levels = c("Electric", "PHEV", "Hydrogen"),
+                       labels = c("BEV", "PHEV", "FCEV")))
+```
+
+#### What does the data record?
+
+The data counts new DMV registrations. The DMV doesn't mark a car as "sold new," so the CEC infers it. A registration counts as a new sale if the car has never had an ownership transfer, has fewer than 120 miles, and its model year is within one year of the registration year.
+
+#### Included and excluded transactions
+
+**Included:** new battery-electric (BEV), plug-in hybrid (PHEV), and hydrogen fuel cell (FCEV) passenger vehicles registered in California. This covers both purchases and leases, since a registration doesn't say which, and it includes fleet vehicles. Cars registered in California by people with an out-of-state mailing address are included as "Out Of State."
+
+**Excluded:** used cars, regular hybrids, gas cars, buses and big trucks, and new EVs bought in another state and driven here with more than 120 miles.
+
+Cars are counted in the county of the owner's mailing address and in the quarter they were registered, which isn't always when they were bought.
+
+#### Unit of observation
+
+Each row is one year, quarter, county, fuel type, make, and model combination. The `Number of Vehicles` column tells how many cars are in that group. A row is not a single car.
+
+### Part 3: Checking the Dashboard
+
+#### 1. Cumulative light-duty ZEV sales through 2026
+
+**Dashboard location and reported value(s):** 2,702,646
+
+```{r}
+zev |> summarise(total = sum(n))
+zev |> filter(county != "Out Of State") |> summarise(total = sum(n))
+
+# check what kinds of vehicles are in the data
+zev |> distinct(make, model) |> arrange(make)
+```
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+The total is 2,702,646, or 2,669,808 without Out Of State. There's no column for vehicle class, but looking through the `model` column shows the data is almost all passenger cars, SUVs, and pickups, with no buses or big trucks. The only borderline vehicles are a few commercial vans (like the Ford E-Transit and Rivian EDV), and there are only about 8,300 of them, less than 1% of the total.
+
+#### 2. Year-to-date 2026 total sales
+
+**Dashboard location and reported value(s):** 151,525
+
+```{r}
+zev |> filter(year == 2026) |> summarise(total = sum(n))
+```
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+151,525 ZEVs were sold in the first half of 2026.
+
+#### 3. Year-to-date 2026 total sales for your county
+
+**County:** Alameda
+
+**Dashboard location and reported value(s):** 8,754
+
+```{r}
+zev |> filter(year == 2026, county == "Alameda") |> summarise(total = sum(n))
+```
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+Alameda County had 8,754 ZEV sales in 2026 so far.
+
+#### 4. 2026 total sales separated by BEV, PHEV, and FCEV
+
+**Dashboard location and reported value(s):**  BEVs: 132,453, PHEVs: 18,901, FCEVs: 171
+
+```{r}
+zev |>
+  filter(year == 2026) |>
+  count(fuel, wt = n) |>
+  mutate(prop = n / sum(n))
+```
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+BEVs: 132,453 (about 87%). PHEVs: 18,901 (about 12.5%). FCEVs: 171 (almost none).
+
+#### 5. Year-to-date ZEV Share
+
+**Dashboard location and reported value(s):** 17.5%
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+This can't be recreated. A share needs total sales of all new cars, including gas cars, as the denominator. This file only has ZEVs, so there's nothing to divide by.
+
+#### 6. Counts of 2026 Tesla sales, split by model
+
+**Dashboard location and reported value(s):** Model Y: 53,682. Model 3: 17,827. Model X: 2,809. Model S: 1,667. Cybertruck: 1,499.
+
+```{r}
+zev |>
+  filter(year == 2026, make == "Tesla") |>
+  count(model, wt = n, sort = TRUE)
+```
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+Model Y: 53,682. Model 3: 17,827. Model X: 2,809. Model S: 1,667. Cybertruck: 1,499.
+
+#### 7. Counts of 2026 sales, split first by make, then by model
+
+**Dashboard location and reported value(s):** 1st: Testla with 77,484; 2nd: Toyota with 11,734; 3rd: Hyundai with 9,275
+
+```{r}
+zev |>
+  filter(year == 2026) |>
+  count(make, model, wt = n) |>
+  arrange(make, desc(n))
+```
+
+**Result and comparison, or explanation of why this cannot be recreated:**
+
+Tesla is the top make in 2026 with 77,484 sales, followed by Toyota (11,734) and Hyundai (9,275).
+
+### Part 4: Beyond the Dashboard
+
+**Questions selected:** B, C, D, E
+
+#### B. Tax Credit Effect
+
+```{r}
+# compare each 2025 quarter to the same quarter in 2024
+zev |>
+  filter(year %in% 2024:2025, fuel != "FCEV") |>
+  group_by(year, quarter, fuel) |>
+  summarise(n = sum(n), .groups = "drop") |>
+  pivot_wider(names_from = year, values_from = n, names_prefix = "y") |>
+  mutate(yoy_change = y2025 / y2024 - 1)
+
+# how Q4 usually compares to Q3
+zev |>
+  filter(year %in% 2022:2025, fuel != "FCEV", quarter %in% 3:4) |>
+  group_by(year, fuel, quarter) |>
+  summarise(n = sum(n), .groups = "drop") |>
+  pivot_wider(names_from = quarter, values_from = n, names_prefix = "Q") |>
+  mutate(q4_over_q3 = Q4 / Q3)
+```
+
+**Answer and comparison of BEVs and PHEVs:** Yes, there's a surge and then a drop. In Q3 2025, BEV sales were 11% higher than in Q3 2024, and PHEV sales were 8% higher. Then in Q4, BEVs fell 24% and PHEVs fell 45% compared to the year before. In earlier years, Q4 sales were usually close to Q3, but in 2025 they dropped sharply. PHEVs were hit harder, and neither type has fully recovered in 2026.
+
+**Strongest reason this analysis could be misleading:** Other things changed in late 2025 too, like prices, tariffs, and interest rates, so the tax credit may not be the only cause. Also, only a few PHEVs qualified for the credit in the first place, so the big PHEV drop is hard to blame on the credit alone.
+
+#### C. Market Concentration
+
+```{r}
+hhi <- function(d) {
+  d |>
+    group_by(year, make) |>
+    summarise(n = sum(n), .groups = "drop") |>
+    group_by(year) |>
+    mutate(share = 100 * n / sum(n)) |>
+    summarise(hhi = sum(share^2),
+              n_makes = n(),
+              tesla_share = sum(share[make == "Tesla"]))
+}
+
+hhi(zev) |> filter(year >= 2018)
+```
+
+**Answer and interpretation:** The HHI adds up each brand's squared market share. Higher means a few brands dominate, and 10,000 means one brand has everything. The ZEV market got less concentrated from 2022 to 2025, with the HHI falling from about 3,700 to 1,900. That's mostly because Tesla's share dropped from 60% to 42% while more brands entered (from 34 to 46 makes). In 2026 the HHI went back up to about 2,800 because Tesla's share rose to 51%.
+
+**Strongest reason this analysis could be misleading:** The data treats brands owned by the same company, like Toyota and Lexus or Hyundai and Kia, as separate competitors, which makes the market look less concentrated than it really is. Also, 2026 only has half a year of data.
+
+#### D. Brand Geography
+
+**Statistic and any exclusions:** For each county, I compare each make's share of the county's ZEV sales to its share statewide, and take the difference in percentage points. The make with the biggest positive difference is the one that's "disproportionately popular" there. I use the difference instead of the ratio because ratios make tiny brands look extreme, for example, a brand going from 0.1% to 0.5% is a 5x ratio but means almost nothing. I use only 2024–2026, so the results reflect the current market. I drop "Out Of State" because it isn't a real county, and I drop counties with fewer than 500 ZEV sales, because their shares jump around too much.
+
+```{r}
+recent <- zev |> filter(year >= 2024, county != "Out Of State")
+
+state <- recent |>
+  count(make, wt = n, name = "state_n") |>
+  mutate(state_share = state_n / sum(state_n))
+
+recent |>
+  count(county, make, wt = n) |>
+  group_by(county) |>
+  mutate(county_total = sum(n), county_share = n / county_total) |>
+  filter(county_total >= 500) |>
+  left_join(state, by = "make") |>
+  mutate(diff = county_share - state_share) |>
+  slice_max(diff, n = 1) |>
+  ungroup() |>
+  select(county, make, county_share, state_share, diff) |>
+  arrange(desc(diff))
+```
+
+**Answer and interpretation:** Tesla is the most overrepresented make in 14 of the 40 counties, mostly in the Bay Area and Central Valley. For example, Tesla is 54% of sales in Santa Clara vs. 45% statewide. Toyota is overrepresented in rural and North Coast counties like Humboldt (15% vs. 4% statewide). Ford, probably thanks to the F-150 Lightning pickup, is overrepresented in farm counties like Yolo and Merced. Rivian shows up in wealthier counties like Napa and Nevada, and Volvo stands out in Marin and San Francisco.
+
+**Strongest reason this analysis could be misleading:** Cars are assigned by mailing address, so company fleets can distort a county. For example, Santa Clara had about 2,900 Jaguar I-PACEs registered in 2024. That's likely a single company fleet, not local shoppers. The 500-sale cutoff is also my own choice, and a different cutoff would change which counties are included.
+
+#### E. The Elon Effect
+
+```{r}
+dem_counties <- c("Alameda", "San Francisco", "Santa Clara", "Marin",
+                  "San Mateo", "Los Angeles", "Santa Cruz", "Humboldt")
+rep_counties <- c("Kern", "Shasta", "Modoc", "Lassen", "Tehama", "Kings",
+                  "Placer", "El Dorado")
+```
+
+**Comparison years and rationale:** I compare 2025 to 2023 and 2024. Tesla's share was already falling before 2025, so I look at whether the *gap* between Democratic and Republican counties changed in 2025 compared to the gap in earlier years. I also compare only the first half (Q1–Q2) of each year, since that's when Musk was most involved with DOGE, and that also lets me include 2026.
+
+**Choice of raw sales counts or proportion of ZEV sales, and what this statistic does and does not control for:** I use Tesla's *share* of ZEV sales. Democratic counties sell about 20 times more ZEVs, and ZEV sales dropped everywhere in 2025, so raw counts would mostly reflect market size. Share controls for how many ZEVs a county buys overall. It does not control for differences in which other EV brands are available or popular in each area.
+
+```{r}
+tesla_lean <- zev |>
+  filter(county %in% c(dem_counties, rep_counties), year >= 2021) |>
+  mutate(lean = if_else(county %in% dem_counties, "Dem", "Rep"))
+
+# full years
+tesla_lean |>
+  group_by(lean, year) |>
+  summarise(share = sum(n[make == "Tesla"]) / sum(n), .groups = "drop") |>
+  pivot_wider(names_from = lean, values_from = share) |>
+  mutate(gap = Dem - Rep)
+
+# first half of each year only
+tesla_lean |>
+  filter(year >= 2023, quarter <= 2) |>
+  group_by(lean, year) |>
+  summarise(share = sum(n[make == "Tesla"]) / sum(n), .groups = "drop") |>
+  pivot_wider(names_from = lean, values_from = share) |>
+  mutate(gap = Dem - Rep)
+
+# change in each county from 2024 to 2025
+tesla_lean |>
+  filter(year %in% 2024:2025) |>
+  group_by(lean, county, year) |>
+  summarise(share = sum(n[make == "Tesla"]) / sum(n), total = sum(n),
+            .groups = "drop") |>
+  pivot_wider(names_from = year, values_from = c(share, total)) |>
+  mutate(change = share_2025 - share_2024) |>
+  arrange(lean, change)
+```
+
+**Answer and interpretation:** The evidence is weak. Over full years, the gap didn't grow in 2025. It was already about as big in 2024, before DOGE existed. Looking only at the first half of each year, the gap did grow, from 2 points in 2024 to almost 6 points in 2025, but by 2026 it was back to about 2 points. Most Democratic counties lost Tesla share in 2025, especially Santa Cruz, Marin, and San Francisco. But most Republican counties lost share too, just by less.
+
+**Strongest reason this analysis could be misleading:** The groups are very uneven. Los Angeles is over half of the Democratic group, while some Republican counties sold only a handful of ZEVs (Modoc sold 6 in 2025), so their numbers jump around a lot. Counties also differ in more than politics, like income and city vs. rural. On top of that, Tesla had a supply shortage in early 2025 while it switched to the new Model Y.

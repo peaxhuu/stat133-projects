@@ -1,0 +1,12 @@
+# R and system files
+.Rproj.user/
+.Rhistory
+.RData
+.DS_Store
+
+# Rebuilt when you render
+.quarto/
+
+# API keys: never commit them
+.Renviron
+docs

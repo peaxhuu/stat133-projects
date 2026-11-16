@@ -1,0 +1,773 @@
+---
+title: "Redrawing California"
+author: "Tsion-Aduesa Smart"
+format:
+  dashboard:
+    theme:
+      light: flatly
+      dark: darkly
+---
+
+<!--
+How this Dashboard is Organized
+
+Each part of the project is a page of your dashboard: a line beginning with
+a single #.
+
+A dashboard runs its code cells from top to bottom, so the Results page can
+only show objects that were created above it. Write the code for each part
+in its cell just below this comment, save what you want to show (a plot, a
+table, a number) as an object, and then print those objects on the pages.
+These cells have `include: false`, so they run but show nothing. The cell
+for Part 5 is marked `cache: true` because it is slow: it reruns only when
+you change it or the code in the Part 2 cell (that's its `cache.extra`
+line). If you change the files it reads, delete the `project_cache/`
+folder so that it reruns.
+
+How you lay out each page is up to you, using the rows, columns, cards, and
+value boxes from the Dashboards lecture.
+
+Each page with code ends with a line like `page-code part-2` in double
+curly braces. It adds a Code button to the right end of the navbar: while
+that page is showing, the button opens a window with the code from the
+cell labeled `part-2`, so you can show it when you're asked how you
+computed a result. Keep this line at the bottom of each page. If you
+split a part's code across several cells, list all of their labels on it,
+e.g. `page-code part-2 part-2b`. The button comes from the `_extensions/`
+folder; leave that folder in your repo.
+
+Put every data file you download in `data/` (shapefiles in
+`data/shapefiles/`), and save any cleaned data you write in `data/clean/`.
+The `.gitignore` file keeps git from committing the downloads, which are
+too large for GitHub, but commits `data/clean/`. A data file saved anywhere
+else would be committed.
+
+Commit and push project.qmd, project.html (your dashboard), the
+project_files/ folder, the _extensions/ folder, and data/clean/.
+-->
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(readxl)
+library(sf)
+library(knitr)
+
+# Blue = Democrat, red = Republican on every plot
+party_colors <- c(Democrat = "#2166ac", Republican = "#b2182b")
+```
+
+```{r}
+#| label: part-2
+#| include: false
+
+# Read every column as text so no bad value is silently turned into NA
+sov_raw <- read_csv("data/state_g24_sov_data_by_g24_srprec.csv",
+                    col_types = cols(.default = "c"))
+n_raw <- nrow(sov_raw)
+
+# Problem 1: vote columns contain values that are not numbers.
+# List every non-number found in the count columns (TOTREG through USSREP01).
+odd_values <- sov_raw |>
+  select(TOTREG:USSREP01) |>
+  pivot_longer(everything()) |>
+  filter(!is.na(value), is.na(as.numeric(value))) |>
+  count(value, name = "cells")
+
+# Precincts with fewer than 10 voters are masked with "*"
+n_masked <- sov_raw |>
+  filter(if_any(TOTREG:USSREP01, ~ .x == "*")) |>
+  nrow()
+
+# Fix: turn "*" into 0, make the count columns numbers, make district a number
+sov <- sov_raw |>
+  mutate(across(TOTREG:USSREP01, ~ replace_na(as.numeric(na_if(.x, "*")), 0)),
+         CDDIST = as.integer(CDDIST))
+
+# Problem 2: is each precinct listed only once?
+n_dup <- sum(duplicated(sov$SRPREC_KEY))
+
+# Problem 3: precincts with no congressional district
+n_no_cd <- sum(is.na(sov$CDDIST))
+
+# Problem 4: party registration columns are all zero
+reg_totals <- sov |>
+  summarise(TOTREG = sum(TOTREG), DEMREG = sum(DEMREG), REPREG = sum(REPREG)) |>
+  pivot_longer(everything(), names_to = "column", values_to = "statewide_total")
+
+# Problem 5: Madera County (county 20) is incomplete, per the Statewide Database
+n_madera <- sum(sov$COUNTY == "20")
+
+# Add each party's congressional and presidential votes.
+# A district can have two candidates from the same party (CNGDEM01 and CNGDEM02),
+# so each party's total is the sum of its columns.
+sov_clean <- sov |>
+  mutate(dem  = CNGDEM01 + CNGDEM02,
+         rep  = CNGREP01 + CNGREP02,
+         ind  = CNGIND01,
+         pres_dem = USPDEM01,
+         pres_rep = USPREP01)
+
+dir.create("data/clean", showWarnings = FALSE)
+write_csv(sov_clean, "data/clean/sov_clean.csv")
+
+cleaning_log <- tibble(
+  Problem = c("Vote counts stored as text, with `*` in masked precincts",
+              "Repeated precinct keys",
+              "Precincts with no congressional district",
+              "Party registration columns are all zero",
+              "Madera County data are incomplete"),
+  Action  = c("Replaced `*` with 0 and converted to numbers",
+              "Checked; none removed",
+              "Kept, but left out of 2024 district totals",
+              "Not used",
+              "Kept; listed as a caveat"),
+  `Rows affected` = c(n_masked, n_dup, n_no_cd, n_raw, n_madera)
+)
+```
+
+```{r}
+#| label: part-3
+#| include: false
+
+# ---- Check: my district totals vs. the official totals ----
+
+# My totals: add up the precincts in each 2024 district
+dist24 <- sov_clean |>
+  filter(!is.na(CDDIST)) |>
+  group_by(district = CDDIST) |>
+  summarise(dem = sum(dem), rep = sum(rep), ind = sum(ind),
+            pres_dem = sum(pres_dem), pres_rep = sum(pres_rep))
+
+# Official totals: the spreadsheet has one block per district.
+# Rows with a number in the first candidate column are county results.
+official_raw <- read_excel("data/g24-results-by-district.xlsx", col_names = FALSE)
+names(official_raw) <- c("label", "cand1", "cand2")
+
+official <- official_raw |>
+  mutate(district = parse_number(if_else(str_detect(label, "District"), label, NA_character_))) |>
+  fill(district) |>
+  mutate(cand1 = as.numeric(cand1),
+         cand2 = as.numeric(cand2)) |>
+  filter(!is.na(cand1), !str_detect(label, "Total|Percent")) |>
+  group_by(district) |>
+  summarise(cand1 = sum(cand1), cand2 = sum(cand2, na.rm = TRUE))
+
+check <- dist24 |>
+  mutate(mine = dem + rep + ind) |>
+  select(district, mine) |>
+  left_join(official |> mutate(official = cand1 + cand2), by = "district") |>
+  mutate(pct_diff = (mine - official) / official)
+
+check_plot <- ggplot(check, aes(x = factor(district), y = pct_diff)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "District", y = "My total vs. official total") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 6))
+
+n_match <- sum(check$pct_diff == 0, na.rm = TRUE)
+biggest_gap <- check |> slice_max(abs(pct_diff), n = 1, with_ties = FALSE)
+
+# ---- Q1: how many races had two candidates from the same party? ----
+candidates <- read_csv("data/g24-candidates-by-district.csv")
+
+matchups <- candidates |>
+  filter(str_starts(FIELD, "CNG")) |>
+  mutate(party = str_sub(FIELD, 4, 6)) |>      # "CNGDEM01" -> "DEM"
+  group_by(DISTRICT) |>
+  summarise(matchup = paste(sort(party), collapse = " vs ")) |>
+  count(matchup)
+
+n_same_party <- sum(matchups$n[matchups$matchup %in% c("DEM vs DEM", "REP vs REP")])
+
+matchup_plot <- ggplot(matchups, aes(x = matchup, y = n)) +
+  geom_col() +
+  labs(x = NULL, y = "Number of districts") +
+  theme_minimal()
+
+# ---- Q2: which races were closest, and which were blowouts? ----
+# Margin = gap between the two candidates as a share of their votes
+margins <- official |>
+  mutate(margin = abs(cand1 - cand2) / (cand1 + cand2))
+
+closest <- margins |> slice_min(margin, n = 1, with_ties = FALSE)
+blowout <- margins |> slice_max(margin, n = 1, with_ties = FALSE)
+
+margin_plot <- ggplot(margins, aes(x = reorder(factor(district), margin), y = margin)) +
+  geom_col() +
+  coord_flip() +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "District", y = "Winning margin") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 6))
+
+# ---- Q3: how big are the precincts? ----
+size_plot <- ggplot(sov_clean, aes(x = TOTVOTE)) +
+  geom_histogram(bins = 50) +
+  labs(x = "Ballots cast in the precinct", y = "Number of precincts") +
+  theme_minimal()
+
+size_range <- range(sov_clean$TOTVOTE)
+size_median <- median(sov_clean$TOTVOTE)
+```
+
+```{r}
+#| label: part-4
+#| include: false
+
+# Votes wasted by party A in each district:
+# if A wins, the votes beyond half of the two-party total; if A loses, all of them.
+wasted <- function(a, b) {
+  if_else(a > b, a - (a + b) / 2, a)
+}
+
+# Each district's winner and Democratic share of the two-party vote
+dist24 <- dist24 |>
+  mutate(winner = if_else(dem > rep, "Democrat", "Republican"),
+         dem_share = dem / (dem + rep),
+         wasted_dem = wasted(dem, rep),
+         wasted_rep = wasted(rep, dem))
+
+# Seats and statewide vote share
+dem_seats_24 <- sum(dist24$winner == "Democrat")
+rep_seats_24 <- sum(dist24$winner == "Republican")
+dem_vote_24  <- sum(dist24$dem) / sum(dist24$dem + dist24$rep)
+
+# Mean-median: median district share minus mean district share.
+# Positive = favors Democrats.
+mm_24 <- median(dist24$dem_share) - mean(dist24$dem_share)
+
+# Efficiency gap: (Republican wasted - Democratic wasted) / all two-party votes.
+# Positive = favors Democrats.
+eg_24 <- (sum(dist24$wasted_rep) - sum(dist24$wasted_dem)) / sum(dist24$dem + dist24$rep)
+
+# Plot 1: Democratic share in every district, with the mean and median
+share_plot <- ggplot(dist24, aes(x = reorder(factor(district), dem_share),
+                                 y = dem_share, fill = winner)) +
+  geom_col() +
+  geom_hline(yintercept = mean(dist24$dem_share), linetype = "solid") +
+  geom_hline(yintercept = median(dist24$dem_share), linetype = "dashed") +
+  scale_fill_manual(values = party_colors) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "District", y = "Democratic share of two-party vote", fill = "Winner",
+       caption = "Solid line = mean, dashed line = median") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 6, angle = 90))
+
+# Plot 2: wasted votes by party in every district
+wasted_long <- dist24 |>
+  select(district, Democrat = wasted_dem, Republican = wasted_rep) |>
+  pivot_longer(-district, names_to = "party", values_to = "wasted")
+
+wasted_plot <- ggplot(wasted_long, aes(x = factor(district), y = wasted, fill = party)) +
+  geom_col(position = "dodge") +
+  scale_fill_manual(values = party_colors) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(x = "District", y = "Wasted votes", fill = NULL) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(size = 6, angle = 90))
+```
+
+```{r}
+#| label: part-5
+#| include: false
+#| cache: true
+#| cache.extra: !expr knitr::knit_code$get("part-2")
+
+# Approach B: split each precinct's votes across its census blocks,
+# in proportion to where its registered voters live.
+
+# Precinct-to-block file: PCTSRPREC = % of the precinct's voters on that block
+blocks <- read_csv("data/state_g24_sr_blk_map.csv",
+                   col_types = cols(.default = "c")) |>
+  mutate(share = as.numeric(PCTSRPREC) / 100) |>
+  select(SRPREC_KEY, BLOCK_KEY, share)
+
+# AB 604 file has no header row: column 1 = block, column 2 = new district
+ab604_blocks <- read_csv("data/ab604.csv", col_names = c("BLOCK_KEY", "district"),
+                         col_types = cols(.default = "c")) |>
+  mutate(district = as.integer(district))
+
+# 1. attach each precinct's votes to its blocks
+# 2. multiply the votes by the block's share
+# 3. look up each block's new district
+alloc <- blocks |>
+  left_join(sov_clean |> select(SRPREC_KEY, dem, rep, ind),
+            by = "SRPREC_KEY") |>
+  mutate(dem = dem * share,
+         rep = rep * share,
+         ind = ind * share) |>
+  left_join(ab604_blocks, by = "BLOCK_KEY")
+
+# 4. add up the votes in each new district
+dist604 <- alloc |>
+  filter(!is.na(district)) |>
+  group_by(district) |>
+  summarise(dem = sum(dem, na.rm = TRUE),
+            rep = sum(rep, na.rm = TRUE),
+            ind = sum(ind, na.rm = TRUE)) |>
+  mutate(winner = if_else(dem > rep, "Democrat", "Republican"),
+         dem_share = dem / (dem + rep))
+
+# Check: did every vote end up in a district?
+votes_before <- sum(sov_clean$dem + sov_clean$rep + sov_clean$ind)
+votes_after  <- sum(dist604$dem + dist604$rep + dist604$ind)
+
+vote_check <- tibble(
+  Step  = c("Votes in the clean precinct data", "Votes in the 52 AB 604 districts",
+            "Votes lost", "Share kept"),
+  Value = c(scales::comma(votes_before), scales::comma(votes_after),
+            scales::comma(votes_before - votes_after),
+            scales::percent(votes_after / votes_before, accuracy = 0.01))
+)
+```
+
+```{r}
+#| label: part-6
+#| include: false
+
+# Same measures as Part 4, for the AB 604 re-run
+dist604 <- dist604 |>
+  mutate(wasted_dem = wasted(dem, rep),
+         wasted_rep = wasted(rep, dem))
+
+dem_seats_604 <- sum(dist604$winner == "Democrat")
+mm_604 <- median(dist604$dem_share) - mean(dist604$dem_share)
+eg_604 <- (sum(dist604$wasted_rep) - sum(dist604$wasted_dem)) / sum(dist604$dem + dist604$rep)
+
+comparison <- tibble(
+  Map = c("2024 map", "AB 604 map (re-run)"),
+  `Democratic seats` = c(dem_seats_24, dem_seats_604),
+  `Republican seats` = c(52 - dem_seats_24, 52 - dem_seats_604),
+  `Mean-median` = scales::percent(c(mm_24, mm_604), accuracy = 0.1),
+  `Efficiency gap` = scales::percent(c(eg_24, eg_604), accuracy = 0.1)
+)
+
+# Maps: read the shapes, join each district's winner, color by winner
+shapes_24 <- st_read("data/shapefiles/tl_2024_06_cd119/tl_2024_06_cd119.shp") |>
+  filter(CD119FP != "ZZ") |>                 # "ZZ" = offshore water, not a district
+  st_transform(3310) |>
+  mutate(district = as.integer(CD119FP)) |>
+  left_join(dist24, by = "district")
+
+shapes_604 <- st_read("data/shapefiles/AB604/AB604.shp") |>
+  st_transform(3310) |>
+  mutate(district = as.integer(DISTRICT)) |>
+  left_join(dist604, by = "district")
+
+map_24 <- ggplot(shapes_24) +
+  geom_sf(aes(fill = winner), color = "white", linewidth = 0.1) +
+  scale_fill_manual(values = party_colors) +
+  labs(fill = "Winner") +
+  theme_void()
+
+map_604 <- ggplot(shapes_604) +
+  geom_sf(aes(fill = winner), color = "white", linewidth = 0.1) +
+  scale_fill_manual(values = party_colors) +
+  labs(fill = "Winner") +
+  theme_void()
+```
+
+# Results
+
+## Row {height="20%"}
+
+```{r}
+#| content: valuebox
+#| title: "Democratic seats, 2024 map"
+list(icon = "flag", color = "primary", value = paste(dem_seats_24, "of 52"))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Democratic seats, AB 604 re-run"
+list(icon = "flag-fill", color = "primary", value = paste(dem_seats_604, "of 52"))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Efficiency gap: 2024 → AB 604"
+list(icon = "arrow-left-right", color = "secondary",
+     value = paste(scales::percent(eg_24, 0.1), "→", scales::percent(eg_604, 0.1)))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Mean-median: 2024 → AB 604"
+list(icon = "distribute-vertical", color = "secondary",
+     value = paste(scales::percent(mm_24, 0.1), "→", scales::percent(mm_604, 0.1)))
+```
+
+## Row {height="50%"}
+
+```{r}
+#| title: "2024 districts (actual results)"
+map_24
+```
+
+```{r}
+#| title: "AB 604 districts (2024 votes re-run)"
+map_604
+```
+
+## Row {height="30%"}
+
+```{r}
+#| title: "Partisan advantage on each map"
+kable(comparison)
+```
+
+::: {.card title="Answer and caveats"}
+Does the AB 604 map increase the Democratic partisan advantage?
+Re-running the 2024 congressional vote on the AB 604 map gives Democrats
+`r dem_seats_604` seats instead of `r dem_seats_24`, a change of
+`r dem_seats_604 - dem_seats_24`. The efficiency gap goes from
+`r scales::percent(eg_24, 0.1)` to `r scales::percent(eg_604, 0.1)` and the
+mean-median score from `r scales::percent(mm_24, 0.1)` to
+`r scales::percent(mm_604, 0.1)`. For both measures, positive favors Democrats.
+
+Caveats
+
+- This is a "what if", not a prediction as candidates, turnout, and voters will
+  be different in 2026.
+- The votes are for the 2024 candidates. In a 2024 race with two Democrats,
+  precincts have no Republican congressional votes, which pulls their new
+  district toward Democrats.
+- Votes were split across blocks by where registered voters live, assuming
+  every voter in a precinct voted the same way on average.
+- Masked small precincts count as 0, and Madera County's data are incomplete.
+:::
+
+{{< page-code part-6 >}}
+
+# About the Data {scrolling="true"}
+
+## The election
+
+On November 4, 2025, California held a statewide special election with one item on the
+ballot: Proposition 50, a constitutional amendment placed there by the Legislature.
+It passed with 64.4% of the vote (7,453,339 Yes to 4,116,998 No).
+
+Since 2010, California's congressional maps have been drawn by the independent
+Citizens Redistricting Commission which is a 14-member body (5 Democrats, 5 Republicans,
+4 others) created by Propositions 11 and 20. The Commission's map,
+drawn after the 2020 Census, was used in the 2022 and 2024 elections.
+
+In 2025, Texas redrew its congressional map mid-decade to gain Republican seats.
+In response, California's Legislature drew its own map, passed as AB 604, designed
+to increase the partisan advantage of Democrats. Proposition 50 required California
+to use the AB 604 map for the 2026, 2028, and 2030 congressional elections, in place
+of the Commission's map. The number of districts stays at 52, and the Commission
+resumes drawing the maps after the 2030 Census. The key difference is who drew the
+lines and why. Is it an independent commission bound by rules meant to limit partisanship,
+or a legislature drawing with partisan intent?
+
+The California Secretary of State publishes the official record of each election,
+including the certified Statement of Vote (results by county), a Supplement to
+the Statement of Vote (results by district within each county), and the official
+voter information guide with the measure's text, analysis, and arguments.
+
+## The data
+
+Our vote counts come from the Statewide Database (SWDB), California's official
+redistricting database. It began as a database built for the State Assembly's 1981
+redistricting; in 1993 the Legislature moved it to a nonpartisan home at the
+University of California, and it is now housed at the UC Berkeley School of Law.
+State law requires every county to send its registration and voting data to SWDB
+after each election, and SWDB processes and publishes it for free so that the
+Commission, local governments, and the public all redistrict from the same data.
+
+For the 2024 General Election, SWDB publishes:
+
+- Statement of Vote (SOV) data, which is precinct-level results for statewide
+  and local contests, by SV and SR precinct
+- Statement of Registration data (registered voters, mail voters, poll voters,
+  and all voters) by RG, RR, and SR precinct and by 2020 census block
+- Precinct boundary files (shapefiles, GeoPackages) for map and SR precincts
+- Conversion files linking precincts to census blocks, to each other, and to cities
+
+Limits of the data from SWDB's own notes:
+
+- Madera County's counts are partial and do not match the certified totals.
+- Precincts with fewer than 10 voters are masked for privacy (their contest
+  counts are replaced with `*`).
+- The 2024 files contain processing artifacts that SWDB plans to remove in an update.
+- Precinct boundaries change every election, so precincts cannot be compared across
+  elections.
+- Registration counts use a snapshot taken 15 days before the election, so they
+  may not match counties' own figures.
+
+## Units of geography
+
+From smallest to largest:
+
+- Census blocks are the smallest unit, drawn by the U.S. Census Bureau.
+  Congressional districts are assigned whole blocks, and blocks nest inside counties.
+- Precincts are drawn by each county's Registrar of Voters for administering an
+  election, and they nest inside counties. Because counties and the Census Bureau
+  draw their lines independently, a block can be split between two precincts.
+  Counties use several precinct types:
+  - RG precincts record voter registration.
+  - SV precincts record votes. They are often consolidations of several
+    registration precincts.
+  - SR precincts are built by SWDB so that each one contains whole SV and
+    whole RR precincts. This gives one geographic unit that carries both registration
+    and voting data.
+- Congressional districts are made of whole census blocks and can cross county
+  lines. Precincts are drawn to fit inside the districts in effect for that election,
+  so 2024 precincts nest inside 2024 districts, but not inside the new AB 604
+  districts. That mismatch is why Part 5 has to allocate votes.
+
+SV precincts are reporting units for counting ballots. Some have no real area of
+their own, such as mail-ballot groups or special precincts for voters whose
+addresses are confidential (for example, judges or domestic violence survivors).
+SR precincts are constructed by SWDB from registration geography, so each one is
+a real area on the map.
+
+Votes are counted by SV precinct. SWDB sums each SR precinct's SV precincts, so SR counts are exact aggregates of reported votes, not estimates. However, an SR precinct can be larger
+than any single precinct a county uses, and votes cast in non-geographic SV
+precincts are attached to whichever SR area contains them. The estimation in this
+project comes later, when we split SR precincts across the AB 604 districts (Part 5).
+
+## Data files
+
+| File | Source | One row represents |
+|---|---|---|
+| `state_g24_sov_data_by_g24_srprec.csv` | [Statewide Database, 2024 General](https://statewidedatabase.org/d20/g24.html) | One SR precinct's vote counts for every 2024 statewide contest |
+| `g24-results-by-district.xlsx` | CA Secretary of State (via course template) | A formatted report: one block per district, one row per county within the district, plus name and party rows |
+| `g24-candidates-by-district.csv` | CA Secretary of State (via course template) | One candidate in one race (Assembly, Senate, or Congress) |
+| `state_g24_sr_blk_map.csv` | [SWDB 2024 geographic data](https://statewidedatabase.org/d20/g24_geo_conv.html) | One block–precinct piece and its registered voters |
+| `ab604.csv` | [Assembly Elections Committee](https://aelc.assembly.ca.gov/proposed-congressional-map) | One census block and its AB 604 district |
+| `AB604.shp` | [Assembly Elections Committee](https://aelc.assembly.ca.gov/proposed-congressional-map) | One AB 604 congressional district (52 rows) |
+| `tl_2024_06_cd119.shp` | U.S. Census Bureau TIGER/Line, 2024 | One 2024 congressional district (52 rows) |
+| `data/clean/sov_clean.csv` | Written in Part 2 | One SR precinct, cleaned, with party vote totals added |
+
+# Data Cleaning {scrolling="true"}
+
+## Row {height="15%"}
+
+```{r}
+#| content: valuebox
+#| title: "Rows read"
+list(icon = "file-earmark-text", color = "secondary", value = scales::comma(n_raw))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Masked small precincts"
+list(icon = "eye-slash", color = "warning", value = scales::comma(n_masked))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Clean data set"
+list(icon = "check2-circle", color = "success",
+     value = paste(scales::comma(nrow(sov_clean)), "rows ×", ncol(sov_clean), "columns"))
+```
+
+## Row
+
+```{r}
+#| title: "Cleaning log"
+kable(cleaning_log)
+```
+
+::: {.card title="What I did and why"}
+I read every column as text first. If R guesses a column is a number and finds
+something it can't convert, it turns that value into `NA` without telling you,
+which would hide the problems I was looking for.
+
+Masked precincts: The table of non-numeric values shows what was stored in
+the vote columns besides numbers. The Statewide Database hides the counts for
+precincts with fewer than 10 voters by writing `*`. I found `r n_masked` such
+precincts and counted them as 0 votes, since they are too small to change any
+district result.
+
+Repeated precincts: `r n_dup` precinct keys appear more than once.
+
+No district: `r n_no_cd` precincts have no congressional district, so they
+can't be counted in a 2024 district. I kept them for Part 5, which places votes
+by location instead.
+
+Party registration: The registration-by-party columns add up to zero
+statewide, which matches the Statewide Database's note that the 2024 files still
+contain errors. I don't use them.
+
+Final data set: `r scales::comma(nrow(sov_clean))` precincts, saved to
+`data/clean/sov_clean.csv`.
+:::
+
+## Row {.tabset}
+
+```{r}
+#| title: "Non-numeric values"
+kable(odd_values)
+```
+
+```{r}
+#| title: "Registration totals"
+kable(reg_totals)
+```
+
+{{< page-code part-2 >}}
+
+# Exploratory Analysis {scrolling="true"}
+
+## Row
+
+```{r}
+#| title: "Check: my district totals vs. official totals"
+check_plot
+```
+
+::: {.card title="Do my totals match?"}
+I added up the precincts in each district and compared the totals with
+`g24-results-by-district.xlsx`. `r n_match` of 52 districts match exactly.
+The biggest difference is in district `r biggest_gap$district`
+(`r scales::percent(biggest_gap$pct_diff, 0.01)`).
+
+The differences come from masked precincts (counted as 0), Madera County's
+incomplete data, and errors the Statewide Database says are still in the files.
+They are small compared with district totals.
+:::
+
+## Row
+
+```{r}
+#| title: "Q1. How many races had two candidates from the same party?"
+matchup_plot
+```
+
+::: {.card title="Answer"}
+California's top-two primary sends the two leading candidates to November no
+matter their party. In 2024, `r n_same_party` of 52 congressional races had two
+candidates from the same party.
+:::
+
+## Row
+
+```{r}
+#| title: "Q2. Which races were closest, and which were blowouts?"
+margin_plot
+```
+
+::: {.card title="Answer"}
+The closest race was in district `r closest$district`, decided by
+`r scales::percent(closest$margin, 0.01)`. The biggest blowout was in district
+`r blowout$district`, decided by `r scales::percent(blowout$margin, 0.1)`.
+:::
+
+## Row
+
+```{r}
+#| title: "Q3. How big are the precincts?"
+size_plot
+```
+
+::: {.card title="Answer"}
+Precincts range from `r size_range[1]` to `r scales::comma(size_range[2])`
+ballots cast, with a median of `r scales::comma(size_median)`.
+:::
+
+{{< page-code part-3 >}}
+
+# Partisan Advantage {scrolling="true"}
+
+## Row {height="15%"}
+
+```{r}
+#| content: valuebox
+#| title: "Seats (D–R)"
+list(icon = "bank", color = "secondary", value = paste(dem_seats_24, "–", rep_seats_24))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Democratic two-party vote share"
+list(icon = "pie-chart", color = "primary", value = scales::percent(dem_vote_24, 0.1))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Mean-median"
+list(icon = "distribute-vertical", color = "secondary", value = scales::percent(mm_24, 0.1))
+```
+
+```{r}
+#| content: valuebox
+#| title: "Efficiency gap"
+list(icon = "trash", color = "secondary", value = scales::percent(eg_24, 0.1))
+```
+
+## Row
+
+```{r}
+#| title: "Democratic share in each 2024 district"
+share_plot
+```
+
+::: {.card title="Mean-median"}
+Democrats won `r scales::percent(dem_vote_24, 0.1)` of the two-party vote and
+`r dem_seats_24` of 52 seats.
+
+The mean-median score is the median district's Democratic share minus the
+average district's share. Positive means the typical district leans more
+Democratic than average, which favors Democrats. For the 2024 map it is
+`r scales::percent(mm_24, 0.1)`.
+:::
+
+## Row
+
+```{r}
+#| title: "Wasted votes in each 2024 district"
+wasted_plot
+```
+
+::: {.card title="Efficiency gap"}
+A vote is wasted if it went to the loser, or to the winner beyond the half
+needed to win. The efficiency gap is Republican wasted votes minus
+Democratic wasted votes, divided by all two-party votes. Positive favors
+Democrats. For the 2024 map it is `r scales::percent(eg_24, 0.1)`.
+
+In districts where both candidates were from one party, all the votes count for
+that party.
+:::
+
+{{< page-code part-4 >}}
+
+# Re-running the 2024 Election {scrolling="true"}
+
+## Row
+
+::: {.card title="How I estimated votes in the new districts"}
+I used Approach B (proportional allocation). Many 2024 precincts are cut by
+the AB 604 lines, so their votes have to be split. Census blocks are small
+enough that each one sits in a single AB 604 district.
+
+The Statewide Database's precinct-to-block file gives, for each block, the
+percent of the precinct's registered voters who live there. I gave each block
+that percent of its precinct's votes, looked up the block's AB 604 district, and
+added the votes up by district.
+
+Assumption: within a precinct, voters on every block voted the same way on
+average, so votes follow where registered voters live.
+:::
+
+```{r}
+#| title: "Did the allocation keep every vote?"
+kable(vote_check)
+```
+
+## Row
+
+```{r}
+#| title: "Estimated 2024 votes in each AB 604 district"
+dist604 |>
+  select(district, dem, rep, winner) |>
+  mutate(dem = round(dem), rep = round(rep)) |>
+  kable(col.names = c("District", "Democratic votes", "Republican votes", "Winner"))
+```
+
+{{< page-code part-5 >}}

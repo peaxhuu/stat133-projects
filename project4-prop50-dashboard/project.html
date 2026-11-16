@@ -1,0 +1,1879 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Tsion-Aduesa Smart">
+
+<title>Redrawing California</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="project_files/libs/clipboard/clipboard.min.js"></script>
+<script src="project_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="project_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="project_files/libs/quarto-html/popper.min.js"></script>
+<script src="project_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="project_files/libs/quarto-html/anchor.min.js"></script>
+<link href="project_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="project_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="project_files/libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="project_files/libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="project_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="project_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="project_files/libs/bootstrap/bootstrap-2b3a152169705d0cb16feab66fbc9c2e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="project_files/libs/bootstrap/bootstrap-dark-b35a1fd92ee9eea1bc4fefd5fbdc1646.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="project_files/libs/bootstrap/bootstrap-2b3a152169705d0cb16feab66fbc9c2e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="project_files/libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="project_files/libs/quarto-dashboard/stickythead.js"></script>
+
+
+
+<script src="project_files/libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="project_files/libs/quarto-dashboard/components.js"></script>
+
+<script src="project_files/libs/quarto-contrib/page-code-1.0.0/page-code.js"></script>
+<link href="project_files/libs/quarto-contrib/page-code-1.0.0/page-code.css" rel="stylesheet">
+
+
+</head>
+
+<body class="quarto-dashboard dashboard-fill fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">
+
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Redrawing California</a></div>
+        
+        <div class="navbar-author">Tsion-Aduesa Smart</div>
+      </div>
+    </div>
+<a class="quarto-color-scheme-toggle" href="" onclick="window.quartoToggleColorScheme(); return false;"><i class="bi"></i></a><div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-results" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#results" data-scrolling="false" href="#results" aria-controls="results" aria-selected="true"><span class="nav-link-text">Results</span></a></li><li class="nav-item" role="presentation"><a id="tab-about-the-data" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#about-the-data" data-scrolling="true" href="#about-the-data" aria-controls="about-the-data" aria-selected="false"><span class="nav-link-text">About the Data</span></a></li><li class="nav-item" role="presentation"><a id="tab-data-cleaning" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#data-cleaning" data-scrolling="true" href="#data-cleaning" aria-controls="data-cleaning" aria-selected="false"><span class="nav-link-text">Data Cleaning</span></a></li><li class="nav-item" role="presentation"><a id="tab-exploratory-analysis" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#exploratory-analysis" data-scrolling="true" href="#exploratory-analysis" aria-controls="exploratory-analysis" aria-selected="false"><span class="nav-link-text">Exploratory Analysis</span></a></li><li class="nav-item" role="presentation"><a id="tab-partisan-advantage" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#partisan-advantage" data-scrolling="true" href="#partisan-advantage" aria-controls="partisan-advantage" aria-selected="false"><span class="nav-link-text">Partisan Advantage</span></a></li><li class="nav-item" role="presentation"><a id="tab-re-running-the-2024-election" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#re-running-the-2024-election" data-scrolling="true" href="#re-running-the-2024-election" aria-controls="re-running-the-2024-election" aria-selected="false"><span class="nav-link-text">Re-running the 2024 Election</span></a></li></ul></div></div>
+</nav>
+</header>
+<div class="page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">  
+
+
+<!--
+How this Dashboard is Organized
+
+Each part of the project is a page of your dashboard: a line beginning with
+a single #.
+
+A dashboard runs its code cells from top to bottom, so the Results page can
+only show objects that were created above it. Write the code for each part
+in its cell just below this comment, save what you want to show (a plot, a
+table, a number) as an object, and then print those objects on the pages.
+These cells have `include: false`, so they run but show nothing. The cell
+for Part 5 is marked `cache: true` because it is slow: it reruns only when
+you change it or the code in the Part 2 cell (that's its `cache.extra`
+line). If you change the files it reads, delete the `project_cache/`
+folder so that it reruns.
+
+How you lay out each page is up to you, using the rows, columns, cards, and
+value boxes from the Dashboards lecture.
+
+Each page with code ends with a line like `page-code part-2` in double
+curly braces. It adds a Code button to the right end of the navbar: while
+that page is showing, the button opens a window with the code from the
+cell labeled `part-2`, so you can show it when you're asked how you
+computed a result. Keep this line at the bottom of each page. If you
+split a part's code across several cells, list all of their labels on it,
+e.g. `page-code part-2 part-2b`. The button comes from the `_extensions/`
+folder; leave that folder in your repo.
+
+Put every data file you download in `data/` (shapefiles in
+`data/shapefiles/`), and save any cleaned data you write in `data/clean/`.
+The `.gitignore` file keeps git from committing the downloads, which are
+too large for GitHub, but commits `data/clean/`. A data file saved anywhere
+else would be committed.
+
+Commit and push project.qmd, project.html (your dashboard), the
+project_files/ folder, the _extensions/ folder, and data/clean/.
+-->
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="results" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-results">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 20fr) minmax(3em, 50fr) minmax(3em, 30fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-primary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="flag" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-flag"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Democratic seats, 2024 map
+</p>
+<p class="value-box-value">
+43 of 52
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-primary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="flag-fill" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-flag-fill"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Democratic seats, AB 604 re-run
+</p>
+<p class="value-box-value">
+46 of 52
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="arrow-left-right" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-arrow-left-right"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Efficiency gap: 2024 → AB 604
+</p>
+<p class="value-box-value">
+9.2% → 17.9%
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="distribute-vertical" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-distribute-vertical"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Mean-median: 2024 → AB 604
+</p>
+<p class="value-box-value">
+1.6% → -2.8%
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="2024 districts (actual results)" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+2024 districts (actual results)
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell html-fill-item html-fill-container bslib-card" data-title="AB 604 districts (2024 votes re-run)" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+AB 604 districts (2024 votes re-run)
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Partisan advantage on each map" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Partisan advantage on each map
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 14%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Map</th>
+<th style="text-align: right;">Democratic seats</th>
+<th style="text-align: right;">Republican seats</th>
+<th style="text-align: left;">Mean-median</th>
+<th style="text-align: left;">Efficiency gap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2024 map</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: left;">1.6%</td>
+<td style="text-align: left;">9.2%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">AB 604 map (re-run)</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">-2.8%</td>
+<td style="text-align: left;">17.9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Answer and caveats" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Answer and caveats
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>Does the AB 604 map increase the Democratic partisan advantage? Re-running the 2024 congressional vote on the AB 604 map gives Democrats 46 seats instead of 43, a change of 3. The efficiency gap goes from 9.2% to 17.9% and the mean-median score from 1.6% to -2.8%. For both measures, positive favors Democrats.</p>
+Caveats
+<ul>
+<li>This is a “what if”, not a prediction as candidates, turnout, and voters will be different in 2026.</li>
+<li>The votes are for the 2024 candidates. In a 2024 race with two Democrats, precincts have no Republican congressional votes, which pulls their new district toward Democrats.</li>
+<li>Votes were split across blocks by where registered voters live, assuming every voter in a precinct voted the same way on average.</li>
+<li>Masked small precincts count as 0, and Madera County’s data are incomplete.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="about-the-data" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" data-scrolling="true" aria-labelledby="tab-about-the-data">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content) minmax(3em, max-content); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>On November 4, 2025, California held a statewide special election with one item on the ballot: Proposition 50, a constitutional amendment placed there by the Legislature. It passed with 64.4% of the vote (7,453,339 Yes to 4,116,998 No).</p>
+<p>Since 2010, California’s congressional maps have been drawn by the independent Citizens Redistricting Commission which is a 14-member body (5 Democrats, 5 Republicans, 4 others) created by Propositions 11 (2008) and 20 (2010). The Commission’s map, drawn after the 2020 Census, was used in the 2022 and 2024 elections.</p>
+<p>In 2025, Texas redrew its congressional map mid-decade to gain Republican seats. In response, California’s Legislature drew its own map, passed as AB 604, designed to increase the partisan advantage of Democrats. Proposition 50 required California to use the AB 604 map for the 2026, 2028, and 2030 congressional elections, in place of the Commission’s map. The number of districts stays at 52, and the Commission resumes drawing the maps after the 2030 Census. The key difference is who drew the lines and why: an independent commission bound by rules meant to limit partisanship, versus a legislature drawing with partisan intent.</p>
+<p>The California Secretary of State publishes the official record of each election, including the certified Statement of Vote (results by county), a Supplement to the Statement of Vote (results by district within each county), and the official voter information guide with the measure’s text, analysis, and arguments.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>Our vote counts come from the Statewide Database (SWDB), California’s official redistricting database. It began as a database built for the State Assembly’s 1981 redistricting; in 1993 the Legislature moved it to a nonpartisan home at the University of California, and it is now housed at the UC Berkeley School of Law. State law requires every county to send its registration and voting data to SWDB after each election, and SWDB processes and publishes it for free so that the Commission, local governments, and the public all redistrict from the same data.</p>
+<p>For the 2024 General Election, SWDB publishes:</p>
+<ul>
+<li>Statement of Vote (SOV) data, which is precinct-level results for statewide and local contests, by SV and SR precinct</li>
+<li>Statement of Registration data (registered voters, mail voters, poll voters, and all voters) by RG, RR, and SR precinct and by 2020 census block</li>
+<li>Precinct boundary files (shapefiles, GeoPackages) for map and SR precincts</li>
+<li>Conversion files linking precincts to census blocks, to each other, and to cities</li>
+</ul>
+<p>Limits of the data, from SWDB’s own notes:</p>
+<ul>
+<li>Madera County’s counts are partial and do not match the certified totals.</li>
+<li>Precincts with fewer than 10 voters are masked for privacy (their contest counts are replaced with <code>*</code>).</li>
+<li>The 2024 files contain processing artifacts that SWDB plans to remove in an update.</li>
+<li>Precinct boundaries change every election, so precincts cannot be compared across elections.</li>
+<li>Registration counts use a snapshot taken 15 days before the election, so they may not match counties’ own figures.</li>
+</ul>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p>From smallest to largest:</p>
+<ul>
+<li>Census blocks are the smallest unit, drawn by the U.S. Census Bureau. Congressional districts are assigned whole blocks, and blocks nest inside counties.</li>
+<li>Precincts are drawn by each county’s Registrar of Voters for administering an election, and they nest inside counties. Because counties and the Census Bureau draw their lines independently, a block can be split between two precincts. Counties use several precinct types:
+<ul>
+<li>RG precincts record voter registration.</li>
+<li>SV precincts record votes. They are often consolidations of several registration precincts.</li>
+<li>SR precincts are built by SWDB so that each one contains whole SV <em>and</em> whole RR precincts. This gives one geographic unit that carries both registration and voting data.</li>
+</ul></li>
+<li>Congressional districts are made of whole census blocks and can cross county lines. Precincts are drawn to fit inside the districts in effect for that election, so 2024 precincts nest inside 2024 districts, but not inside the new AB 604 districts. That mismatch is why Part 5 has to allocate votes.</li>
+</ul>
+<p>SV precincts are reporting units for counting ballots. Some have no real area of their own, such as mail-ballot groups or special precincts for voters whose addresses are confidential (for example, judges or domestic violence survivors). SR precincts are constructed by SWDB from registration geography, so each one is a real area on the map.</p>
+<p>Votes are counted by SV precinct. SWDB sums each SR precinct’s SV precincts, so SR counts are exact aggregates of reported votes, not estimates. However, an SR precinct can be larger than any single precinct a county uses, and votes cast in non-geographic SV precincts are attached to whichever SR area contains them. The estimation in this project comes later, when we split SR precincts across the AB 604 districts (Part 5).</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>Source</th>
+<th>One row represents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>state_g24_sov_data_by_g24_srprec.csv</code></td>
+<td><a href="https://statewidedatabase.org/d20/g24.html">Statewide Database, 2024 General</a></td>
+<td>One SR precinct’s vote counts for every 2024 statewide contest</td>
+</tr>
+<tr class="even">
+<td><code>g24-results-by-district.xlsx</code></td>
+<td>CA Secretary of State (via course template)</td>
+<td>A formatted report: one block per district, one row per county within the district, plus name and party rows</td>
+</tr>
+<tr class="odd">
+<td><code>g24-candidates-by-district.csv</code></td>
+<td>CA Secretary of State (via course template)</td>
+<td>One candidate in one race (Assembly, Senate, or Congress)</td>
+</tr>
+<tr class="even">
+<td><code>state_g24_sr_blk_map.csv</code></td>
+<td><a href="https://statewidedatabase.org/d20/g24_geo_conv.html">SWDB 2024 geographic data</a></td>
+<td>One block–precinct piece and its registered voters</td>
+</tr>
+<tr class="odd">
+<td><code>ab604.csv</code></td>
+<td><a href="https://aelc.assembly.ca.gov/proposed-congressional-map">Assembly Elections Committee</a></td>
+<td>One census block and its AB 604 district</td>
+</tr>
+<tr class="even">
+<td><code>AB604.shp</code></td>
+<td><a href="https://aelc.assembly.ca.gov/proposed-congressional-map">Assembly Elections Committee</a></td>
+<td>One AB 604 congressional district (52 rows)</td>
+</tr>
+<tr class="odd">
+<td><code>tl_2024_06_cd119.shp</code></td>
+<td>U.S. Census Bureau TIGER/Line, 2024</td>
+<td>One 2024 congressional district (52 rows)</td>
+</tr>
+<tr class="even">
+<td><code>data/clean/sov_clean.csv</code></td>
+<td>Written in Part 2</td>
+<td>One SR precinct, cleaned, with party vote totals added</td>
+</tr>
+</tbody>
+</table>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="data-cleaning" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" data-scrolling="true" aria-labelledby="tab-data-cleaning">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 15fr) minmax(3em, 42.5fr) minmax(3em, 42.5fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="file-earmark-text" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-file-earmark-text"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Rows read
+</p>
+<p class="value-box-value">
+25,245
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-warning showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="eye-slash" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-eye-slash"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Masked small precincts
+</p>
+<p class="value-box-value">
+0
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-success showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="check2-circle" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-check2-circle"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Clean data set
+</p>
+<p class="value-box-value">
+25,245 rows × 81 columns
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Cleaning log" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Cleaning log
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 49%">
+<col style="width: 38%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Problem</th>
+<th style="text-align: left;">Action</th>
+<th style="text-align: right;">Rows affected</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Vote counts stored as text, with <code>*</code> in masked precincts</td>
+<td style="text-align: left;">Replaced <code>*</code> with 0 and converted to numbers</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Repeated precinct keys</td>
+<td style="text-align: left;">Checked; none removed</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Precincts with no congressional district</td>
+<td style="text-align: left;">Kept, but left out of 2024 district totals</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Party registration columns are all zero</td>
+<td style="text-align: left;">Not used</td>
+<td style="text-align: right;">25245</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Madera County data are incomplete</td>
+<td style="text-align: left;">Kept; listed as a caveat</td>
+<td style="text-align: right;">78</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="What I did and why" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+What I did and why
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>I read every column as text first. If R guesses a column is a number and finds something it can’t convert, it turns that value into <code>NA</code> without telling you, which would hide the problems I was looking for.</p>
+<p>Masked precincts. The table of non-numeric values shows what was stored in the vote columns besides numbers. The Statewide Database hides the counts for precincts with fewer than 10 voters by writing <code>*</code>. I found 0 such precincts and counted them as 0 votes, since they are too small to change any district result.</p>
+<p>Repeated precincts. 0 precinct keys appear more than once.</p>
+<p>No district. 0 precincts have no congressional district, so they can’t be counted in a 2024 district. I kept them for Part 5, which places votes by location instead.</p>
+<p>Party registration. The registration-by-party columns add up to zero statewide, which matches the Statewide Database’s note that the 2024 files still contain errors. I don’t use them.</p>
+<p>Final data set: 25,245 precincts, saved to <code>data/clean/sov_clean.csv</code>.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header dashboard-card-no-title bslib-navs-card-title">
+
+<ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-18"><li class="nav-item" role="presentation"><a href="#card-tabset-18-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Non-numeric values" aria-selected="true" class="nav-link active">Non-numeric values</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-18-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Registration totals" aria-selected="false" class="nav-link">Registration totals</a></li></ul></div>
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-18"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-18-1"><div class="card-body html-fill-item html-fill-container" data-title="Non-numeric values">
+<div class="cell-output-display html-fill-item html-fill-container">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">value</th>
+<th style="text-align: right;">cells</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">***</td>
+<td style="text-align: right;">86856</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-18-2"><div class="card-body html-fill-item html-fill-container" data-title="Registration totals">
+<div class="cell-output-display html-fill-item html-fill-container">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">column</th>
+<th style="text-align: right;">statewide_total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">TOTREG</td>
+<td style="text-align: right;">22580761</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">DEMREG</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">REPREG</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+<div id="exploratory-analysis" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" data-scrolling="true" aria-labelledby="tab-exploratory-analysis">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Check: my district totals vs. official totals" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Check: my district totals vs.&nbsp;official totals
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Do my totals match?" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Do my totals match?
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>I added up the precincts in each district and compared the totals with <code>g24-results-by-district.xlsx</code>. 1 of 52 districts match exactly. The biggest difference is in district 13 (-0.39%).</p>
+<p>The differences come from masked precincts (counted as 0), Madera County’s incomplete data, and errors the Statewide Database says are still in the files. They are small compared with district totals.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Q1. How many races had two candidates from the same party?" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Q1. How many races had two candidates from the same party?
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Answer" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Answer
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>California’s top-two primary sends the two leading candidates to November no matter their party. In 2024, 4 of 52 congressional races had two candidates from the same party.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Q2. Which races were closest, and which were blowouts?" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Q2. Which races were closest, and which were blowouts?
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Answer" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Answer
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>The closest race was in district 13, decided by 0.09%. The biggest blowout was in district 11, decided by 62.1%.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Q3. How big are the precincts?" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Q3. How big are the precincts?
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Answer" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Answer
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>Precincts range from 0 to 6,891 ballots cast, with a median of 308.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="partisan-advantage" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" data-scrolling="true" aria-labelledby="tab-partisan-advantage">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 15fr) minmax(3em, 42.5fr) minmax(3em, 42.5fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="bank" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-bank"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Seats (D–R)
+</p>
+<p class="value-box-value">
+43 – 10
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-primary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="pie-chart" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-pie-chart"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Democratic two-party vote share
+</p>
+<p class="value-box-value">
+60.7%
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="distribute-vertical" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-distribute-vertical"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Mean-median
+</p>
+<p class="value-box-value">
+1.6%
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box bg-secondary showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="trash" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-trash"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Efficiency gap
+</p>
+<p class="value-box-value">
+9.2%
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Democratic share in each 2024 district" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Democratic share in each 2024 district
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Mean-median" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Mean-median
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>Democrats won 60.7% of the two-party vote and 43 of 52 seats.</p>
+<p>The mean-median score is the median district’s Democratic share minus the average district’s share. Positive means the typical district leans more Democratic than average, which favors Democrats. For the 2024 map it is 1.6%.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Wasted votes in each 2024 district" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Wasted votes in each 2024 district
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<img src="project_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid quarto-dashboard-img-contain">
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card html-fill-item html-fill-container bslib-card" data-title="Efficiency gap" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Efficiency gap
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>A vote is wasted if it went to the loser, or to the winner beyond the half needed to win. The efficiency gap is Republican wasted votes minus Democratic wasted votes, divided by all two-party votes. Positive favors Democrats. For the 2024 map it is 9.2%.</p>
+<p>In districts where both candidates were from one party, all the votes count for that party.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="re-running-the-2024-election" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" data-scrolling="true" aria-labelledby="tab-re-running-the-2024-election">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr) minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="How I estimated votes in the new districts" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+How I estimated votes in the new districts
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p>I used Approach B (proportional allocation). Many 2024 precincts are cut by the AB 604 lines, so their votes have to be split. Census blocks are small enough that each one sits in a single AB 604 district.</p>
+<p>The Statewide Database’s precinct-to-block file gives, for each block, the percent of the precinct’s registered voters who live there. I gave each block that percent of its precinct’s votes, looked up the block’s AB 604 district, and added the votes up by district.</p>
+<p>Assumption: within a precinct, voters on every block voted the same way on average, so votes follow where registered voters live.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card cell html-fill-item html-fill-container bslib-card" data-title="Did the allocation keep every vote?" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Did the allocation keep every vote?
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Step</th>
+<th style="text-align: left;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Votes in the clean precinct data</td>
+<td style="text-align: left;">15,104,371</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Votes in the 52 AB 604 districts</td>
+<td style="text-align: left;">15,103,620</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Votes lost</td>
+<td style="text-align: left;">751</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Share kept</td>
+<td style="text-align: left;">100.00%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card cell html-fill-item html-fill-container bslib-card" data-title="Estimated 2024 votes in each AB 604 district" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Estimated 2024 votes in each AB 604 district
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<div class="cell-output-display html-fill-item html-fill-container">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">District</th>
+<th style="text-align: right;">Democratic votes</th>
+<th style="text-align: right;">Republican votes</th>
+<th style="text-align: left;">Winner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">182536</td>
+<td style="text-align: right;">150547</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">231970</td>
+<td style="text-align: right;">148401</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">189935</td>
+<td style="text-align: right;">164638</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">189348</td>
+<td style="text-align: right;">143688</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">118108</td>
+<td style="text-align: right;">229041</td>
+<td style="text-align: left;">Republican</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">171008</td>
+<td style="text-align: right;">151904</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">189330</td>
+<td style="text-align: right;">144663</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">206138</td>
+<td style="text-align: right;">95613</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">150450</td>
+<td style="text-align: right;">107208</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">241492</td>
+<td style="text-align: right;">122289</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">274823</td>
+<td style="text-align: right;">64326</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">282994</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">106097</td>
+<td style="text-align: right;">93398</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">182755</td>
+<td style="text-align: right;">88548</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">211545</td>
+<td style="text-align: right;">77838</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">303563</td>
+<td style="text-align: right;">1222</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">173840</td>
+<td style="text-align: right;">81195</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">148689</td>
+<td style="text-align: right;">80974</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">252380</td>
+<td style="text-align: right;">111787</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">18143</td>
+<td style="text-align: right;">266917</td>
+<td style="text-align: left;">Republican</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">95927</td>
+<td style="text-align: right;">98000</td>
+<td style="text-align: left;">Republican</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">79246</td>
+<td style="text-align: right;">85059</td>
+<td style="text-align: left;">Republican</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">104128</td>
+<td style="text-align: right;">162504</td>
+<td style="text-align: left;">Republican</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">24</td>
+<td style="text-align: right;">214218</td>
+<td style="text-align: right;">127631</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">25</td>
+<td style="text-align: right;">151325</td>
+<td style="text-align: right;">113437</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">26</td>
+<td style="text-align: right;">189811</td>
+<td style="text-align: right;">141056</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">155380</td>
+<td style="text-align: right;">128506</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">28</td>
+<td style="text-align: right;">200210</td>
+<td style="text-align: right;">110832</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">29</td>
+<td style="text-align: right;">147599</td>
+<td style="text-align: right;">66379</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">213422</td>
+<td style="text-align: right;">101066</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">156576</td>
+<td style="text-align: right;">118185</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">32</td>
+<td style="text-align: right;">207700</td>
+<td style="text-align: right;">126246</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">139520</td>
+<td style="text-align: right;">98230</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">189289</td>
+<td style="text-align: right;">25</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">140040</td>
+<td style="text-align: right;">110457</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">36</td>
+<td style="text-align: right;">245999</td>
+<td style="text-align: right;">111947</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">160391</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">137694</td>
+<td style="text-align: right;">108221</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">39</td>
+<td style="text-align: right;">129199</td>
+<td style="text-align: right;">98936</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">160148</td>
+<td style="text-align: right;">211998</td>
+<td style="text-align: left;">Republican</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">172525</td>
+<td style="text-align: right;">120963</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">189315</td>
+<td style="text-align: right;">149080</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">160076</td>
+<td style="text-align: right;">53152</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">147262</td>
+<td style="text-align: right;">53784</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">152843</td>
+<td style="text-align: right;">138564</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">135824</td>
+<td style="text-align: right;">84761</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">184945</td>
+<td style="text-align: right;">164007</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">163694</td>
+<td style="text-align: right;">155138</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">49</td>
+<td style="text-align: right;">206515</td>
+<td style="text-align: right;">173227</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">209472</td>
+<td style="text-align: right;">151469</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">201458</td>
+<td style="text-align: right;">141837</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">168463</td>
+<td style="text-align: right;">94895</td>
+<td style="text-align: left;">Democrat</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /container fluid -->
+<script type="application/json" class="page-code-data">{"blocks":[{"html":"<div class=\"sourceCode\" id=\"page-code-1-1-cb1\"><pre\nclass=\"sourceCode r\"><code class=\"sourceCode r\"><span id=\"page-code-1-1-cb1-1\"><a href=\"#page-code-1-1-cb1-1\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Same measures as Part 4, for the AB 604 re-run<\/span><\/span>\n<span id=\"page-code-1-1-cb1-2\"><a href=\"#page-code-1-1-cb1-2\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dist604 <span class=\"ot\">&lt;-<\/span> dist604 <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-3\"><a href=\"#page-code-1-1-cb1-3\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">wasted_dem =<\/span> <span class=\"fu\">wasted<\/span>(dem, rep),<\/span>\n<span id=\"page-code-1-1-cb1-4\"><a href=\"#page-code-1-1-cb1-4\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">wasted_rep =<\/span> <span class=\"fu\">wasted<\/span>(rep, dem))<\/span>\n<span id=\"page-code-1-1-cb1-5\"><a href=\"#page-code-1-1-cb1-5\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-1-1-cb1-6\"><a href=\"#page-code-1-1-cb1-6\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dem_seats_604 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(dist604<span class=\"sc\">$<\/span>winner <span class=\"sc\">==<\/span> <span class=\"st\">&quot;Democrat&quot;<\/span>)<\/span>\n<span id=\"page-code-1-1-cb1-7\"><a href=\"#page-code-1-1-cb1-7\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>mm_604 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">median<\/span>(dist604<span class=\"sc\">$<\/span>dem_share) <span class=\"sc\">-<\/span> <span class=\"fu\">mean<\/span>(dist604<span class=\"sc\">$<\/span>dem_share)<\/span>\n<span id=\"page-code-1-1-cb1-8\"><a href=\"#page-code-1-1-cb1-8\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>eg_604 <span class=\"ot\">&lt;-<\/span> (<span class=\"fu\">sum<\/span>(dist604<span class=\"sc\">$<\/span>wasted_rep) <span class=\"sc\">-<\/span> <span class=\"fu\">sum<\/span>(dist604<span class=\"sc\">$<\/span>wasted_dem)) <span class=\"sc\">/<\/span> <span class=\"fu\">sum<\/span>(dist604<span class=\"sc\">$<\/span>dem <span class=\"sc\">+<\/span> dist604<span class=\"sc\">$<\/span>rep)<\/span>\n<span id=\"page-code-1-1-cb1-9\"><a href=\"#page-code-1-1-cb1-9\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-1-1-cb1-10\"><a href=\"#page-code-1-1-cb1-10\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>comparison <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">tibble<\/span>(<\/span>\n<span id=\"page-code-1-1-cb1-11\"><a href=\"#page-code-1-1-cb1-11\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"at\">Map =<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;2024 map&quot;<\/span>, <span class=\"st\">&quot;AB 604 map (re-run)&quot;<\/span>),<\/span>\n<span id=\"page-code-1-1-cb1-12\"><a href=\"#page-code-1-1-cb1-12\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"st\">`<\/span><span class=\"at\">Democratic seats<\/span><span class=\"st\">`<\/span> <span class=\"ot\">=<\/span> <span class=\"fu\">c<\/span>(dem_seats_24, dem_seats_604),<\/span>\n<span id=\"page-code-1-1-cb1-13\"><a href=\"#page-code-1-1-cb1-13\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"st\">`<\/span><span class=\"at\">Republican seats<\/span><span class=\"st\">`<\/span> <span class=\"ot\">=<\/span> <span class=\"fu\">c<\/span>(<span class=\"dv\">52<\/span> <span class=\"sc\">-<\/span> dem_seats_24, <span class=\"dv\">52<\/span> <span class=\"sc\">-<\/span> dem_seats_604),<\/span>\n<span id=\"page-code-1-1-cb1-14\"><a href=\"#page-code-1-1-cb1-14\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"st\">`<\/span><span class=\"at\">Mean-median<\/span><span class=\"st\">`<\/span> <span class=\"ot\">=<\/span> scales<span class=\"sc\">::<\/span><span class=\"fu\">percent<\/span>(<span class=\"fu\">c<\/span>(mm_24, mm_604), <span class=\"at\">accuracy =<\/span> <span class=\"fl\">0.1<\/span>),<\/span>\n<span id=\"page-code-1-1-cb1-15\"><a href=\"#page-code-1-1-cb1-15\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"st\">`<\/span><span class=\"at\">Efficiency gap<\/span><span class=\"st\">`<\/span> <span class=\"ot\">=<\/span> scales<span class=\"sc\">::<\/span><span class=\"fu\">percent<\/span>(<span class=\"fu\">c<\/span>(eg_24, eg_604), <span class=\"at\">accuracy =<\/span> <span class=\"fl\">0.1<\/span>)<\/span>\n<span id=\"page-code-1-1-cb1-16\"><a href=\"#page-code-1-1-cb1-16\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>)<\/span>\n<span id=\"page-code-1-1-cb1-17\"><a href=\"#page-code-1-1-cb1-17\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-1-1-cb1-18\"><a href=\"#page-code-1-1-cb1-18\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Maps: read the shapes, join each district&#39;s winner, color by winner<\/span><\/span>\n<span id=\"page-code-1-1-cb1-19\"><a href=\"#page-code-1-1-cb1-19\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>shapes_24 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">st_read<\/span>(<span class=\"st\">&quot;data/shapefiles/tl_2024_06_cd119/tl_2024_06_cd119.shp&quot;<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-20\"><a href=\"#page-code-1-1-cb1-20\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(CD119FP <span class=\"sc\">!=<\/span> <span class=\"st\">&quot;ZZ&quot;<\/span>) <span class=\"sc\">|&gt;<\/span>                 <span class=\"co\"># &quot;ZZ&quot; = offshore water, not a district<\/span><\/span>\n<span id=\"page-code-1-1-cb1-21\"><a href=\"#page-code-1-1-cb1-21\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">st_transform<\/span>(<span class=\"dv\">3310<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-22\"><a href=\"#page-code-1-1-cb1-22\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">district =<\/span> <span class=\"fu\">as.integer<\/span>(CD119FP)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-23\"><a href=\"#page-code-1-1-cb1-23\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">left_join<\/span>(dist24, <span class=\"at\">by =<\/span> <span class=\"st\">&quot;district&quot;<\/span>)<\/span>\n<span id=\"page-code-1-1-cb1-24\"><a href=\"#page-code-1-1-cb1-24\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-1-1-cb1-25\"><a href=\"#page-code-1-1-cb1-25\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>shapes_604 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">st_read<\/span>(<span class=\"st\">&quot;data/shapefiles/AB604/AB604.shp&quot;<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-26\"><a href=\"#page-code-1-1-cb1-26\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">st_transform<\/span>(<span class=\"dv\">3310<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-27\"><a href=\"#page-code-1-1-cb1-27\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">district =<\/span> <span class=\"fu\">as.integer<\/span>(DISTRICT)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-1-1-cb1-28\"><a href=\"#page-code-1-1-cb1-28\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">left_join<\/span>(dist604, <span class=\"at\">by =<\/span> <span class=\"st\">&quot;district&quot;<\/span>)<\/span>\n<span id=\"page-code-1-1-cb1-29\"><a href=\"#page-code-1-1-cb1-29\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-1-1-cb1-30\"><a href=\"#page-code-1-1-cb1-30\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>map_24 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(shapes_24) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-31\"><a href=\"#page-code-1-1-cb1-31\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_sf<\/span>(<span class=\"fu\">aes<\/span>(<span class=\"at\">fill =<\/span> winner), <span class=\"at\">color =<\/span> <span class=\"st\">&quot;white&quot;<\/span>, <span class=\"at\">linewidth =<\/span> <span class=\"fl\">0.1<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-32\"><a href=\"#page-code-1-1-cb1-32\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_fill_manual<\/span>(<span class=\"at\">values =<\/span> party_colors) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-33\"><a href=\"#page-code-1-1-cb1-33\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">fill =<\/span> <span class=\"st\">&quot;Winner&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-34\"><a href=\"#page-code-1-1-cb1-34\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_void<\/span>()<\/span>\n<span id=\"page-code-1-1-cb1-35\"><a href=\"#page-code-1-1-cb1-35\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-1-1-cb1-36\"><a href=\"#page-code-1-1-cb1-36\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>map_604 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(shapes_604) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-37\"><a href=\"#page-code-1-1-cb1-37\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_sf<\/span>(<span class=\"fu\">aes<\/span>(<span class=\"at\">fill =<\/span> winner), <span class=\"at\">color =<\/span> <span class=\"st\">&quot;white&quot;<\/span>, <span class=\"at\">linewidth =<\/span> <span class=\"fl\">0.1<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-38\"><a href=\"#page-code-1-1-cb1-38\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_fill_manual<\/span>(<span class=\"at\">values =<\/span> party_colors) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-39\"><a href=\"#page-code-1-1-cb1-39\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">fill =<\/span> <span class=\"st\">&quot;Winner&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-1-1-cb1-40\"><a href=\"#page-code-1-1-cb1-40\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_void<\/span>()<\/span><\/code><\/pre><\/div>","label":"part-6"}],"page":"Results"}</script>
+<script type="application/json" class="page-code-data">{"blocks":[{"html":"<div class=\"sourceCode\" id=\"page-code-2-1-cb1\"><pre\nclass=\"sourceCode r\"><code class=\"sourceCode r\"><span id=\"page-code-2-1-cb1-1\"><a href=\"#page-code-2-1-cb1-1\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Read every column as text so no bad value is silently turned into NA<\/span><\/span>\n<span id=\"page-code-2-1-cb1-2\"><a href=\"#page-code-2-1-cb1-2\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>sov_raw <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">read_csv<\/span>(<span class=\"st\">&quot;data/state_g24_sov_data_by_g24_srprec.csv&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-3\"><a href=\"#page-code-2-1-cb1-3\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>                    <span class=\"at\">col_types =<\/span> <span class=\"fu\">cols<\/span>(<span class=\"at\">.default =<\/span> <span class=\"st\">&quot;c&quot;<\/span>))<\/span>\n<span id=\"page-code-2-1-cb1-4\"><a href=\"#page-code-2-1-cb1-4\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_raw <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">nrow<\/span>(sov_raw)<\/span>\n<span id=\"page-code-2-1-cb1-5\"><a href=\"#page-code-2-1-cb1-5\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-6\"><a href=\"#page-code-2-1-cb1-6\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Problem 1: vote columns contain values that are not numbers.<\/span><\/span>\n<span id=\"page-code-2-1-cb1-7\"><a href=\"#page-code-2-1-cb1-7\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># List every non-number found in the count columns (TOTREG through USSREP01).<\/span><\/span>\n<span id=\"page-code-2-1-cb1-8\"><a href=\"#page-code-2-1-cb1-8\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>odd_values <span class=\"ot\">&lt;-<\/span> sov_raw <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-9\"><a href=\"#page-code-2-1-cb1-9\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">select<\/span>(TOTREG<span class=\"sc\">:<\/span>USSREP01) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-10\"><a href=\"#page-code-2-1-cb1-10\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">pivot_longer<\/span>(<span class=\"fu\">everything<\/span>()) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-11\"><a href=\"#page-code-2-1-cb1-11\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(<span class=\"sc\">!<\/span><span class=\"fu\">is.na<\/span>(value), <span class=\"fu\">is.na<\/span>(<span class=\"fu\">as.numeric<\/span>(value))) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-12\"><a href=\"#page-code-2-1-cb1-12\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">count<\/span>(value, <span class=\"at\">name =<\/span> <span class=\"st\">&quot;cells&quot;<\/span>)<\/span>\n<span id=\"page-code-2-1-cb1-13\"><a href=\"#page-code-2-1-cb1-13\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-14\"><a href=\"#page-code-2-1-cb1-14\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Precincts with fewer than 10 voters are masked with &quot;*&quot;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-15\"><a href=\"#page-code-2-1-cb1-15\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_masked <span class=\"ot\">&lt;-<\/span> sov_raw <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-16\"><a href=\"#page-code-2-1-cb1-16\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(<span class=\"fu\">if_any<\/span>(TOTREG<span class=\"sc\">:<\/span>USSREP01, <span class=\"sc\">~<\/span> .x <span class=\"sc\">==<\/span> <span class=\"st\">&quot;*&quot;<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-17\"><a href=\"#page-code-2-1-cb1-17\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">nrow<\/span>()<\/span>\n<span id=\"page-code-2-1-cb1-18\"><a href=\"#page-code-2-1-cb1-18\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-19\"><a href=\"#page-code-2-1-cb1-19\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Fix: turn &quot;*&quot; into 0, make the count columns numbers, make district a number<\/span><\/span>\n<span id=\"page-code-2-1-cb1-20\"><a href=\"#page-code-2-1-cb1-20\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>sov <span class=\"ot\">&lt;-<\/span> sov_raw <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-21\"><a href=\"#page-code-2-1-cb1-21\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"fu\">across<\/span>(TOTREG<span class=\"sc\">:<\/span>USSREP01, <span class=\"sc\">~<\/span> <span class=\"fu\">replace_na<\/span>(<span class=\"fu\">as.numeric<\/span>(<span class=\"fu\">na_if<\/span>(.x, <span class=\"st\">&quot;*&quot;<\/span>)), <span class=\"dv\">0<\/span>)),<\/span>\n<span id=\"page-code-2-1-cb1-22\"><a href=\"#page-code-2-1-cb1-22\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">CDDIST =<\/span> <span class=\"fu\">as.integer<\/span>(CDDIST))<\/span>\n<span id=\"page-code-2-1-cb1-23\"><a href=\"#page-code-2-1-cb1-23\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-24\"><a href=\"#page-code-2-1-cb1-24\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Problem 2: is each precinct listed only once?<\/span><\/span>\n<span id=\"page-code-2-1-cb1-25\"><a href=\"#page-code-2-1-cb1-25\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_dup <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(<span class=\"fu\">duplicated<\/span>(sov<span class=\"sc\">$<\/span>SRPREC_KEY))<\/span>\n<span id=\"page-code-2-1-cb1-26\"><a href=\"#page-code-2-1-cb1-26\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-27\"><a href=\"#page-code-2-1-cb1-27\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Problem 3: precincts with no congressional district<\/span><\/span>\n<span id=\"page-code-2-1-cb1-28\"><a href=\"#page-code-2-1-cb1-28\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_no_cd <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(<span class=\"fu\">is.na<\/span>(sov<span class=\"sc\">$<\/span>CDDIST))<\/span>\n<span id=\"page-code-2-1-cb1-29\"><a href=\"#page-code-2-1-cb1-29\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-30\"><a href=\"#page-code-2-1-cb1-30\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Problem 4: party registration columns are all zero<\/span><\/span>\n<span id=\"page-code-2-1-cb1-31\"><a href=\"#page-code-2-1-cb1-31\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>reg_totals <span class=\"ot\">&lt;-<\/span> sov <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-32\"><a href=\"#page-code-2-1-cb1-32\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">summarise<\/span>(<span class=\"at\">TOTREG =<\/span> <span class=\"fu\">sum<\/span>(TOTREG), <span class=\"at\">DEMREG =<\/span> <span class=\"fu\">sum<\/span>(DEMREG), <span class=\"at\">REPREG =<\/span> <span class=\"fu\">sum<\/span>(REPREG)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-33\"><a href=\"#page-code-2-1-cb1-33\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">pivot_longer<\/span>(<span class=\"fu\">everything<\/span>(), <span class=\"at\">names_to =<\/span> <span class=\"st\">&quot;column&quot;<\/span>, <span class=\"at\">values_to =<\/span> <span class=\"st\">&quot;statewide_total&quot;<\/span>)<\/span>\n<span id=\"page-code-2-1-cb1-34\"><a href=\"#page-code-2-1-cb1-34\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-35\"><a href=\"#page-code-2-1-cb1-35\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Problem 5: Madera County (county 20) is incomplete, per the Statewide Database<\/span><\/span>\n<span id=\"page-code-2-1-cb1-36\"><a href=\"#page-code-2-1-cb1-36\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_madera <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(sov<span class=\"sc\">$<\/span>COUNTY <span class=\"sc\">==<\/span> <span class=\"st\">&quot;20&quot;<\/span>)<\/span>\n<span id=\"page-code-2-1-cb1-37\"><a href=\"#page-code-2-1-cb1-37\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-38\"><a href=\"#page-code-2-1-cb1-38\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Add each party&#39;s congressional and presidential votes.<\/span><\/span>\n<span id=\"page-code-2-1-cb1-39\"><a href=\"#page-code-2-1-cb1-39\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># A district can have two candidates from the same party (CNGDEM01 and CNGDEM02),<\/span><\/span>\n<span id=\"page-code-2-1-cb1-40\"><a href=\"#page-code-2-1-cb1-40\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># so each party&#39;s total is the sum of its columns.<\/span><\/span>\n<span id=\"page-code-2-1-cb1-41\"><a href=\"#page-code-2-1-cb1-41\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>sov_clean <span class=\"ot\">&lt;-<\/span> sov <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-2-1-cb1-42\"><a href=\"#page-code-2-1-cb1-42\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">dem  =<\/span> CNGDEM01 <span class=\"sc\">+<\/span> CNGDEM02,<\/span>\n<span id=\"page-code-2-1-cb1-43\"><a href=\"#page-code-2-1-cb1-43\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">rep  =<\/span> CNGREP01 <span class=\"sc\">+<\/span> CNGREP02,<\/span>\n<span id=\"page-code-2-1-cb1-44\"><a href=\"#page-code-2-1-cb1-44\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">ind  =<\/span> CNGIND01,<\/span>\n<span id=\"page-code-2-1-cb1-45\"><a href=\"#page-code-2-1-cb1-45\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">pres_dem =<\/span> USPDEM01,<\/span>\n<span id=\"page-code-2-1-cb1-46\"><a href=\"#page-code-2-1-cb1-46\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">pres_rep =<\/span> USPREP01)<\/span>\n<span id=\"page-code-2-1-cb1-47\"><a href=\"#page-code-2-1-cb1-47\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-48\"><a href=\"#page-code-2-1-cb1-48\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"fu\">dir.create<\/span>(<span class=\"st\">&quot;data/clean&quot;<\/span>, <span class=\"at\">showWarnings =<\/span> <span class=\"cn\">FALSE<\/span>)<\/span>\n<span id=\"page-code-2-1-cb1-49\"><a href=\"#page-code-2-1-cb1-49\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"fu\">write_csv<\/span>(sov_clean, <span class=\"st\">&quot;data/clean/sov_clean.csv&quot;<\/span>)<\/span>\n<span id=\"page-code-2-1-cb1-50\"><a href=\"#page-code-2-1-cb1-50\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-2-1-cb1-51\"><a href=\"#page-code-2-1-cb1-51\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>cleaning_log <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">tibble<\/span>(<\/span>\n<span id=\"page-code-2-1-cb1-52\"><a href=\"#page-code-2-1-cb1-52\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"at\">Problem =<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;Vote counts stored as text, with `*` in masked precincts&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-53\"><a href=\"#page-code-2-1-cb1-53\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Repeated precinct keys&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-54\"><a href=\"#page-code-2-1-cb1-54\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Precincts with no congressional district&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-55\"><a href=\"#page-code-2-1-cb1-55\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Party registration columns are all zero&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-56\"><a href=\"#page-code-2-1-cb1-56\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Madera County data are incomplete&quot;<\/span>),<\/span>\n<span id=\"page-code-2-1-cb1-57\"><a href=\"#page-code-2-1-cb1-57\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"at\">Action  =<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;Replaced `*` with 0 and converted to numbers&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-58\"><a href=\"#page-code-2-1-cb1-58\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Checked; none removed&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-59\"><a href=\"#page-code-2-1-cb1-59\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Kept, but left out of 2024 district totals&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-60\"><a href=\"#page-code-2-1-cb1-60\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Not used&quot;<\/span>,<\/span>\n<span id=\"page-code-2-1-cb1-61\"><a href=\"#page-code-2-1-cb1-61\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>              <span class=\"st\">&quot;Kept; listed as a caveat&quot;<\/span>),<\/span>\n<span id=\"page-code-2-1-cb1-62\"><a href=\"#page-code-2-1-cb1-62\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"st\">`<\/span><span class=\"at\">Rows affected<\/span><span class=\"st\">`<\/span> <span class=\"ot\">=<\/span> <span class=\"fu\">c<\/span>(n_masked, n_dup, n_no_cd, n_raw, n_madera)<\/span>\n<span id=\"page-code-2-1-cb1-63\"><a href=\"#page-code-2-1-cb1-63\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>)<\/span><\/code><\/pre><\/div>","label":"part-2"}],"page":"Data Cleaning"}</script>
+<script type="application/json" class="page-code-data">{"blocks":[{"html":"<div class=\"sourceCode\" id=\"page-code-3-1-cb1\"><pre\nclass=\"sourceCode r\"><code class=\"sourceCode r\"><span id=\"page-code-3-1-cb1-1\"><a href=\"#page-code-3-1-cb1-1\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># ---- Check: my district totals vs. the official totals ----<\/span><\/span>\n<span id=\"page-code-3-1-cb1-2\"><a href=\"#page-code-3-1-cb1-2\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-3\"><a href=\"#page-code-3-1-cb1-3\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># My totals: add up the precincts in each 2024 district<\/span><\/span>\n<span id=\"page-code-3-1-cb1-4\"><a href=\"#page-code-3-1-cb1-4\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dist24 <span class=\"ot\">&lt;-<\/span> sov_clean <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-5\"><a href=\"#page-code-3-1-cb1-5\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(<span class=\"sc\">!<\/span><span class=\"fu\">is.na<\/span>(CDDIST)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-6\"><a href=\"#page-code-3-1-cb1-6\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">group_by<\/span>(<span class=\"at\">district =<\/span> CDDIST) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-7\"><a href=\"#page-code-3-1-cb1-7\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">summarise<\/span>(<span class=\"at\">dem =<\/span> <span class=\"fu\">sum<\/span>(dem), <span class=\"at\">rep =<\/span> <span class=\"fu\">sum<\/span>(rep), <span class=\"at\">ind =<\/span> <span class=\"fu\">sum<\/span>(ind),<\/span>\n<span id=\"page-code-3-1-cb1-8\"><a href=\"#page-code-3-1-cb1-8\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            <span class=\"at\">pres_dem =<\/span> <span class=\"fu\">sum<\/span>(pres_dem), <span class=\"at\">pres_rep =<\/span> <span class=\"fu\">sum<\/span>(pres_rep))<\/span>\n<span id=\"page-code-3-1-cb1-9\"><a href=\"#page-code-3-1-cb1-9\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-10\"><a href=\"#page-code-3-1-cb1-10\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Official totals: the spreadsheet has one block per district.<\/span><\/span>\n<span id=\"page-code-3-1-cb1-11\"><a href=\"#page-code-3-1-cb1-11\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Rows with a number in the first candidate column are county results.<\/span><\/span>\n<span id=\"page-code-3-1-cb1-12\"><a href=\"#page-code-3-1-cb1-12\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>official_raw <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">read_excel<\/span>(<span class=\"st\">&quot;data/g24-results-by-district.xlsx&quot;<\/span>, <span class=\"at\">col_names =<\/span> <span class=\"cn\">FALSE<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-13\"><a href=\"#page-code-3-1-cb1-13\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"fu\">names<\/span>(official_raw) <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;label&quot;<\/span>, <span class=\"st\">&quot;cand1&quot;<\/span>, <span class=\"st\">&quot;cand2&quot;<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-14\"><a href=\"#page-code-3-1-cb1-14\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-15\"><a href=\"#page-code-3-1-cb1-15\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>official <span class=\"ot\">&lt;-<\/span> official_raw <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-16\"><a href=\"#page-code-3-1-cb1-16\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">district =<\/span> <span class=\"fu\">parse_number<\/span>(<span class=\"fu\">if_else<\/span>(<span class=\"fu\">str_detect<\/span>(label, <span class=\"st\">&quot;District&quot;<\/span>), label, <span class=\"cn\">NA_character_<\/span>))) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-17\"><a href=\"#page-code-3-1-cb1-17\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">fill<\/span>(district) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-18\"><a href=\"#page-code-3-1-cb1-18\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">cand1 =<\/span> <span class=\"fu\">as.numeric<\/span>(cand1),<\/span>\n<span id=\"page-code-3-1-cb1-19\"><a href=\"#page-code-3-1-cb1-19\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">cand2 =<\/span> <span class=\"fu\">as.numeric<\/span>(cand2)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-20\"><a href=\"#page-code-3-1-cb1-20\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(<span class=\"sc\">!<\/span><span class=\"fu\">is.na<\/span>(cand1), <span class=\"sc\">!<\/span><span class=\"fu\">str_detect<\/span>(label, <span class=\"st\">&quot;Total|Percent&quot;<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-21\"><a href=\"#page-code-3-1-cb1-21\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">group_by<\/span>(district) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-22\"><a href=\"#page-code-3-1-cb1-22\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">summarise<\/span>(<span class=\"at\">cand1 =<\/span> <span class=\"fu\">sum<\/span>(cand1), <span class=\"at\">cand2 =<\/span> <span class=\"fu\">sum<\/span>(cand2, <span class=\"at\">na.rm =<\/span> <span class=\"cn\">TRUE<\/span>))<\/span>\n<span id=\"page-code-3-1-cb1-23\"><a href=\"#page-code-3-1-cb1-23\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-24\"><a href=\"#page-code-3-1-cb1-24\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>check <span class=\"ot\">&lt;-<\/span> dist24 <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-25\"><a href=\"#page-code-3-1-cb1-25\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">mine =<\/span> dem <span class=\"sc\">+<\/span> rep <span class=\"sc\">+<\/span> ind) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-26\"><a href=\"#page-code-3-1-cb1-26\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">select<\/span>(district, mine) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-27\"><a href=\"#page-code-3-1-cb1-27\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">left_join<\/span>(official <span class=\"sc\">|&gt;<\/span> <span class=\"fu\">mutate<\/span>(<span class=\"at\">official =<\/span> cand1 <span class=\"sc\">+<\/span> cand2), <span class=\"at\">by =<\/span> <span class=\"st\">&quot;district&quot;<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-28\"><a href=\"#page-code-3-1-cb1-28\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">pct_diff =<\/span> (mine <span class=\"sc\">-<\/span> official) <span class=\"sc\">/<\/span> official)<\/span>\n<span id=\"page-code-3-1-cb1-29\"><a href=\"#page-code-3-1-cb1-29\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-30\"><a href=\"#page-code-3-1-cb1-30\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>check_plot <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(check, <span class=\"fu\">aes<\/span>(<span class=\"at\">x =<\/span> <span class=\"fu\">factor<\/span>(district), <span class=\"at\">y =<\/span> pct_diff)) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-31\"><a href=\"#page-code-3-1-cb1-31\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_col<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-32\"><a href=\"#page-code-3-1-cb1-32\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_y_continuous<\/span>(<span class=\"at\">labels =<\/span> scales<span class=\"sc\">::<\/span>percent) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-33\"><a href=\"#page-code-3-1-cb1-33\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">x =<\/span> <span class=\"st\">&quot;District&quot;<\/span>, <span class=\"at\">y =<\/span> <span class=\"st\">&quot;My total vs. official total&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-34\"><a href=\"#page-code-3-1-cb1-34\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_minimal<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-35\"><a href=\"#page-code-3-1-cb1-35\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme<\/span>(<span class=\"at\">axis.text.x =<\/span> <span class=\"fu\">element_text<\/span>(<span class=\"at\">size =<\/span> <span class=\"dv\">6<\/span>))<\/span>\n<span id=\"page-code-3-1-cb1-36\"><a href=\"#page-code-3-1-cb1-36\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-37\"><a href=\"#page-code-3-1-cb1-37\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_match <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(check<span class=\"sc\">$<\/span>pct_diff <span class=\"sc\">==<\/span> <span class=\"dv\">0<\/span>, <span class=\"at\">na.rm =<\/span> <span class=\"cn\">TRUE<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-38\"><a href=\"#page-code-3-1-cb1-38\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>biggest_gap <span class=\"ot\">&lt;-<\/span> check <span class=\"sc\">|&gt;<\/span> <span class=\"fu\">slice_max<\/span>(<span class=\"fu\">abs<\/span>(pct_diff), <span class=\"at\">n =<\/span> <span class=\"dv\">1<\/span>, <span class=\"at\">with_ties =<\/span> <span class=\"cn\">FALSE<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-39\"><a href=\"#page-code-3-1-cb1-39\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-40\"><a href=\"#page-code-3-1-cb1-40\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># ---- Q1: how many races had two candidates from the same party? ----<\/span><\/span>\n<span id=\"page-code-3-1-cb1-41\"><a href=\"#page-code-3-1-cb1-41\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>candidates <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">read_csv<\/span>(<span class=\"st\">&quot;data/g24-candidates-by-district.csv&quot;<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-42\"><a href=\"#page-code-3-1-cb1-42\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-43\"><a href=\"#page-code-3-1-cb1-43\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>matchups <span class=\"ot\">&lt;-<\/span> candidates <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-44\"><a href=\"#page-code-3-1-cb1-44\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(<span class=\"fu\">str_starts<\/span>(FIELD, <span class=\"st\">&quot;CNG&quot;<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-45\"><a href=\"#page-code-3-1-cb1-45\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">party =<\/span> <span class=\"fu\">str_sub<\/span>(FIELD, <span class=\"dv\">4<\/span>, <span class=\"dv\">6<\/span>)) <span class=\"sc\">|&gt;<\/span>      <span class=\"co\"># &quot;CNGDEM01&quot; -&gt; &quot;DEM&quot;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-46\"><a href=\"#page-code-3-1-cb1-46\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">group_by<\/span>(DISTRICT) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-47\"><a href=\"#page-code-3-1-cb1-47\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">summarise<\/span>(<span class=\"at\">matchup =<\/span> <span class=\"fu\">paste<\/span>(<span class=\"fu\">sort<\/span>(party), <span class=\"at\">collapse =<\/span> <span class=\"st\">&quot; vs &quot;<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-48\"><a href=\"#page-code-3-1-cb1-48\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">count<\/span>(matchup)<\/span>\n<span id=\"page-code-3-1-cb1-49\"><a href=\"#page-code-3-1-cb1-49\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-50\"><a href=\"#page-code-3-1-cb1-50\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>n_same_party <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(matchups<span class=\"sc\">$<\/span>n[matchups<span class=\"sc\">$<\/span>matchup <span class=\"sc\">%in%<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;DEM vs DEM&quot;<\/span>, <span class=\"st\">&quot;REP vs REP&quot;<\/span>)])<\/span>\n<span id=\"page-code-3-1-cb1-51\"><a href=\"#page-code-3-1-cb1-51\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-52\"><a href=\"#page-code-3-1-cb1-52\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>matchup_plot <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(matchups, <span class=\"fu\">aes<\/span>(<span class=\"at\">x =<\/span> matchup, <span class=\"at\">y =<\/span> n)) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-53\"><a href=\"#page-code-3-1-cb1-53\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_col<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-54\"><a href=\"#page-code-3-1-cb1-54\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">x =<\/span> <span class=\"cn\">NULL<\/span>, <span class=\"at\">y =<\/span> <span class=\"st\">&quot;Number of districts&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-55\"><a href=\"#page-code-3-1-cb1-55\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_minimal<\/span>()<\/span>\n<span id=\"page-code-3-1-cb1-56\"><a href=\"#page-code-3-1-cb1-56\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-57\"><a href=\"#page-code-3-1-cb1-57\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># ---- Q2: which races were closest, and which were blowouts? ----<\/span><\/span>\n<span id=\"page-code-3-1-cb1-58\"><a href=\"#page-code-3-1-cb1-58\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Margin = gap between the two candidates as a share of their votes<\/span><\/span>\n<span id=\"page-code-3-1-cb1-59\"><a href=\"#page-code-3-1-cb1-59\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>margins <span class=\"ot\">&lt;-<\/span> official <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-3-1-cb1-60\"><a href=\"#page-code-3-1-cb1-60\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">margin =<\/span> <span class=\"fu\">abs<\/span>(cand1 <span class=\"sc\">-<\/span> cand2) <span class=\"sc\">/<\/span> (cand1 <span class=\"sc\">+<\/span> cand2))<\/span>\n<span id=\"page-code-3-1-cb1-61\"><a href=\"#page-code-3-1-cb1-61\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-62\"><a href=\"#page-code-3-1-cb1-62\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>closest <span class=\"ot\">&lt;-<\/span> margins <span class=\"sc\">|&gt;<\/span> <span class=\"fu\">slice_min<\/span>(margin, <span class=\"at\">n =<\/span> <span class=\"dv\">1<\/span>, <span class=\"at\">with_ties =<\/span> <span class=\"cn\">FALSE<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-63\"><a href=\"#page-code-3-1-cb1-63\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>blowout <span class=\"ot\">&lt;-<\/span> margins <span class=\"sc\">|&gt;<\/span> <span class=\"fu\">slice_max<\/span>(margin, <span class=\"at\">n =<\/span> <span class=\"dv\">1<\/span>, <span class=\"at\">with_ties =<\/span> <span class=\"cn\">FALSE<\/span>)<\/span>\n<span id=\"page-code-3-1-cb1-64\"><a href=\"#page-code-3-1-cb1-64\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-65\"><a href=\"#page-code-3-1-cb1-65\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>margin_plot <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(margins, <span class=\"fu\">aes<\/span>(<span class=\"at\">x =<\/span> <span class=\"fu\">reorder<\/span>(<span class=\"fu\">factor<\/span>(district), margin), <span class=\"at\">y =<\/span> margin)) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-66\"><a href=\"#page-code-3-1-cb1-66\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_col<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-67\"><a href=\"#page-code-3-1-cb1-67\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">coord_flip<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-68\"><a href=\"#page-code-3-1-cb1-68\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_y_continuous<\/span>(<span class=\"at\">labels =<\/span> scales<span class=\"sc\">::<\/span>percent) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-69\"><a href=\"#page-code-3-1-cb1-69\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">x =<\/span> <span class=\"st\">&quot;District&quot;<\/span>, <span class=\"at\">y =<\/span> <span class=\"st\">&quot;Winning margin&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-70\"><a href=\"#page-code-3-1-cb1-70\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_minimal<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-71\"><a href=\"#page-code-3-1-cb1-71\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme<\/span>(<span class=\"at\">axis.text.y =<\/span> <span class=\"fu\">element_text<\/span>(<span class=\"at\">size =<\/span> <span class=\"dv\">6<\/span>))<\/span>\n<span id=\"page-code-3-1-cb1-72\"><a href=\"#page-code-3-1-cb1-72\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-73\"><a href=\"#page-code-3-1-cb1-73\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># ---- Q3: how big are the precincts? ----<\/span><\/span>\n<span id=\"page-code-3-1-cb1-74\"><a href=\"#page-code-3-1-cb1-74\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>size_plot <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(sov_clean, <span class=\"fu\">aes<\/span>(<span class=\"at\">x =<\/span> TOTVOTE)) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-75\"><a href=\"#page-code-3-1-cb1-75\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_histogram<\/span>(<span class=\"at\">bins =<\/span> <span class=\"dv\">50<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-76\"><a href=\"#page-code-3-1-cb1-76\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">x =<\/span> <span class=\"st\">&quot;Ballots cast in the precinct&quot;<\/span>, <span class=\"at\">y =<\/span> <span class=\"st\">&quot;Number of precincts&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-3-1-cb1-77\"><a href=\"#page-code-3-1-cb1-77\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_minimal<\/span>()<\/span>\n<span id=\"page-code-3-1-cb1-78\"><a href=\"#page-code-3-1-cb1-78\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-3-1-cb1-79\"><a href=\"#page-code-3-1-cb1-79\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>size_range <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">range<\/span>(sov_clean<span class=\"sc\">$<\/span>TOTVOTE)<\/span>\n<span id=\"page-code-3-1-cb1-80\"><a href=\"#page-code-3-1-cb1-80\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>size_median <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">median<\/span>(sov_clean<span class=\"sc\">$<\/span>TOTVOTE)<\/span><\/code><\/pre><\/div>","label":"part-3"}],"page":"Exploratory Analysis"}</script>
+<script type="application/json" class="page-code-data">{"blocks":[{"html":"<div class=\"sourceCode\" id=\"page-code-4-1-cb1\"><pre\nclass=\"sourceCode r\"><code class=\"sourceCode r\"><span id=\"page-code-4-1-cb1-1\"><a href=\"#page-code-4-1-cb1-1\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Votes wasted by party A in each district:<\/span><\/span>\n<span id=\"page-code-4-1-cb1-2\"><a href=\"#page-code-4-1-cb1-2\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># if A wins, the votes beyond half of the two-party total; if A loses, all of them.<\/span><\/span>\n<span id=\"page-code-4-1-cb1-3\"><a href=\"#page-code-4-1-cb1-3\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>wasted <span class=\"ot\">&lt;-<\/span> <span class=\"cf\">function<\/span>(a, b) {<\/span>\n<span id=\"page-code-4-1-cb1-4\"><a href=\"#page-code-4-1-cb1-4\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">if_else<\/span>(a <span class=\"sc\">&gt;<\/span> b, a <span class=\"sc\">-<\/span> (a <span class=\"sc\">+<\/span> b) <span class=\"sc\">/<\/span> <span class=\"dv\">2<\/span>, a)<\/span>\n<span id=\"page-code-4-1-cb1-5\"><a href=\"#page-code-4-1-cb1-5\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>}<\/span>\n<span id=\"page-code-4-1-cb1-6\"><a href=\"#page-code-4-1-cb1-6\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-7\"><a href=\"#page-code-4-1-cb1-7\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Each district&#39;s winner and Democratic share of the two-party vote<\/span><\/span>\n<span id=\"page-code-4-1-cb1-8\"><a href=\"#page-code-4-1-cb1-8\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dist24 <span class=\"ot\">&lt;-<\/span> dist24 <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-4-1-cb1-9\"><a href=\"#page-code-4-1-cb1-9\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">winner =<\/span> <span class=\"fu\">if_else<\/span>(dem <span class=\"sc\">&gt;<\/span> rep, <span class=\"st\">&quot;Democrat&quot;<\/span>, <span class=\"st\">&quot;Republican&quot;<\/span>),<\/span>\n<span id=\"page-code-4-1-cb1-10\"><a href=\"#page-code-4-1-cb1-10\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">dem_share =<\/span> dem <span class=\"sc\">/<\/span> (dem <span class=\"sc\">+<\/span> rep),<\/span>\n<span id=\"page-code-4-1-cb1-11\"><a href=\"#page-code-4-1-cb1-11\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">wasted_dem =<\/span> <span class=\"fu\">wasted<\/span>(dem, rep),<\/span>\n<span id=\"page-code-4-1-cb1-12\"><a href=\"#page-code-4-1-cb1-12\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">wasted_rep =<\/span> <span class=\"fu\">wasted<\/span>(rep, dem))<\/span>\n<span id=\"page-code-4-1-cb1-13\"><a href=\"#page-code-4-1-cb1-13\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-14\"><a href=\"#page-code-4-1-cb1-14\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Seats and statewide vote share<\/span><\/span>\n<span id=\"page-code-4-1-cb1-15\"><a href=\"#page-code-4-1-cb1-15\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dem_seats_24 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>winner <span class=\"sc\">==<\/span> <span class=\"st\">&quot;Democrat&quot;<\/span>)<\/span>\n<span id=\"page-code-4-1-cb1-16\"><a href=\"#page-code-4-1-cb1-16\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>rep_seats_24 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>winner <span class=\"sc\">==<\/span> <span class=\"st\">&quot;Republican&quot;<\/span>)<\/span>\n<span id=\"page-code-4-1-cb1-17\"><a href=\"#page-code-4-1-cb1-17\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dem_vote_24  <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>dem) <span class=\"sc\">/<\/span> <span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>dem <span class=\"sc\">+<\/span> dist24<span class=\"sc\">$<\/span>rep)<\/span>\n<span id=\"page-code-4-1-cb1-18\"><a href=\"#page-code-4-1-cb1-18\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-19\"><a href=\"#page-code-4-1-cb1-19\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Mean-median: median district share minus mean district share.<\/span><\/span>\n<span id=\"page-code-4-1-cb1-20\"><a href=\"#page-code-4-1-cb1-20\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Positive = favors Democrats.<\/span><\/span>\n<span id=\"page-code-4-1-cb1-21\"><a href=\"#page-code-4-1-cb1-21\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>mm_24 <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">median<\/span>(dist24<span class=\"sc\">$<\/span>dem_share) <span class=\"sc\">-<\/span> <span class=\"fu\">mean<\/span>(dist24<span class=\"sc\">$<\/span>dem_share)<\/span>\n<span id=\"page-code-4-1-cb1-22\"><a href=\"#page-code-4-1-cb1-22\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-23\"><a href=\"#page-code-4-1-cb1-23\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Efficiency gap: (Republican wasted - Democratic wasted) / all two-party votes.<\/span><\/span>\n<span id=\"page-code-4-1-cb1-24\"><a href=\"#page-code-4-1-cb1-24\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Positive = favors Democrats.<\/span><\/span>\n<span id=\"page-code-4-1-cb1-25\"><a href=\"#page-code-4-1-cb1-25\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>eg_24 <span class=\"ot\">&lt;-<\/span> (<span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>wasted_rep) <span class=\"sc\">-<\/span> <span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>wasted_dem)) <span class=\"sc\">/<\/span> <span class=\"fu\">sum<\/span>(dist24<span class=\"sc\">$<\/span>dem <span class=\"sc\">+<\/span> dist24<span class=\"sc\">$<\/span>rep)<\/span>\n<span id=\"page-code-4-1-cb1-26\"><a href=\"#page-code-4-1-cb1-26\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-27\"><a href=\"#page-code-4-1-cb1-27\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Plot 1: Democratic share in every district, with the mean and median<\/span><\/span>\n<span id=\"page-code-4-1-cb1-28\"><a href=\"#page-code-4-1-cb1-28\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>share_plot <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(dist24, <span class=\"fu\">aes<\/span>(<span class=\"at\">x =<\/span> <span class=\"fu\">reorder<\/span>(<span class=\"fu\">factor<\/span>(district), dem_share),<\/span>\n<span id=\"page-code-4-1-cb1-29\"><a href=\"#page-code-4-1-cb1-29\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>                                 <span class=\"at\">y =<\/span> dem_share, <span class=\"at\">fill =<\/span> winner)) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-30\"><a href=\"#page-code-4-1-cb1-30\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_col<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-31\"><a href=\"#page-code-4-1-cb1-31\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_hline<\/span>(<span class=\"at\">yintercept =<\/span> <span class=\"fu\">mean<\/span>(dist24<span class=\"sc\">$<\/span>dem_share), <span class=\"at\">linetype =<\/span> <span class=\"st\">&quot;solid&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-32\"><a href=\"#page-code-4-1-cb1-32\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_hline<\/span>(<span class=\"at\">yintercept =<\/span> <span class=\"fu\">median<\/span>(dist24<span class=\"sc\">$<\/span>dem_share), <span class=\"at\">linetype =<\/span> <span class=\"st\">&quot;dashed&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-33\"><a href=\"#page-code-4-1-cb1-33\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_fill_manual<\/span>(<span class=\"at\">values =<\/span> party_colors) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-34\"><a href=\"#page-code-4-1-cb1-34\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_y_continuous<\/span>(<span class=\"at\">labels =<\/span> scales<span class=\"sc\">::<\/span>percent) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-35\"><a href=\"#page-code-4-1-cb1-35\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">x =<\/span> <span class=\"st\">&quot;District&quot;<\/span>, <span class=\"at\">y =<\/span> <span class=\"st\">&quot;Democratic share of two-party vote&quot;<\/span>, <span class=\"at\">fill =<\/span> <span class=\"st\">&quot;Winner&quot;<\/span>,<\/span>\n<span id=\"page-code-4-1-cb1-36\"><a href=\"#page-code-4-1-cb1-36\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>       <span class=\"at\">caption =<\/span> <span class=\"st\">&quot;Solid line = mean, dashed line = median&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-37\"><a href=\"#page-code-4-1-cb1-37\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_minimal<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-38\"><a href=\"#page-code-4-1-cb1-38\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme<\/span>(<span class=\"at\">axis.text.x =<\/span> <span class=\"fu\">element_text<\/span>(<span class=\"at\">size =<\/span> <span class=\"dv\">6<\/span>, <span class=\"at\">angle =<\/span> <span class=\"dv\">90<\/span>))<\/span>\n<span id=\"page-code-4-1-cb1-39\"><a href=\"#page-code-4-1-cb1-39\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-40\"><a href=\"#page-code-4-1-cb1-40\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Plot 2: wasted votes by party in every district<\/span><\/span>\n<span id=\"page-code-4-1-cb1-41\"><a href=\"#page-code-4-1-cb1-41\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>wasted_long <span class=\"ot\">&lt;-<\/span> dist24 <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-4-1-cb1-42\"><a href=\"#page-code-4-1-cb1-42\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">select<\/span>(district, <span class=\"at\">Democrat =<\/span> wasted_dem, <span class=\"at\">Republican =<\/span> wasted_rep) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-4-1-cb1-43\"><a href=\"#page-code-4-1-cb1-43\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">pivot_longer<\/span>(<span class=\"sc\">-<\/span>district, <span class=\"at\">names_to =<\/span> <span class=\"st\">&quot;party&quot;<\/span>, <span class=\"at\">values_to =<\/span> <span class=\"st\">&quot;wasted&quot;<\/span>)<\/span>\n<span id=\"page-code-4-1-cb1-44\"><a href=\"#page-code-4-1-cb1-44\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-4-1-cb1-45\"><a href=\"#page-code-4-1-cb1-45\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>wasted_plot <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">ggplot<\/span>(wasted_long, <span class=\"fu\">aes<\/span>(<span class=\"at\">x =<\/span> <span class=\"fu\">factor<\/span>(district), <span class=\"at\">y =<\/span> wasted, <span class=\"at\">fill =<\/span> party)) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-46\"><a href=\"#page-code-4-1-cb1-46\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">geom_col<\/span>(<span class=\"at\">position =<\/span> <span class=\"st\">&quot;dodge&quot;<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-47\"><a href=\"#page-code-4-1-cb1-47\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_fill_manual<\/span>(<span class=\"at\">values =<\/span> party_colors) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-48\"><a href=\"#page-code-4-1-cb1-48\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">scale_y_continuous<\/span>(<span class=\"at\">labels =<\/span> scales<span class=\"sc\">::<\/span>comma) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-49\"><a href=\"#page-code-4-1-cb1-49\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">labs<\/span>(<span class=\"at\">x =<\/span> <span class=\"st\">&quot;District&quot;<\/span>, <span class=\"at\">y =<\/span> <span class=\"st\">&quot;Wasted votes&quot;<\/span>, <span class=\"at\">fill =<\/span> <span class=\"cn\">NULL<\/span>) <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-50\"><a href=\"#page-code-4-1-cb1-50\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme_minimal<\/span>() <span class=\"sc\">+<\/span><\/span>\n<span id=\"page-code-4-1-cb1-51\"><a href=\"#page-code-4-1-cb1-51\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">theme<\/span>(<span class=\"at\">axis.text.x =<\/span> <span class=\"fu\">element_text<\/span>(<span class=\"at\">size =<\/span> <span class=\"dv\">6<\/span>, <span class=\"at\">angle =<\/span> <span class=\"dv\">90<\/span>))<\/span><\/code><\/pre><\/div>","label":"part-4"}],"page":"Partisan Advantage"}</script>
+<script type="application/json" class="page-code-data">{"blocks":[{"html":"<div class=\"sourceCode\" id=\"page-code-5-1-cb1\"><pre\nclass=\"sourceCode r\"><code class=\"sourceCode r\"><span id=\"page-code-5-1-cb1-1\"><a href=\"#page-code-5-1-cb1-1\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Approach B: split each precinct&#39;s votes across its census blocks,<\/span><\/span>\n<span id=\"page-code-5-1-cb1-2\"><a href=\"#page-code-5-1-cb1-2\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># in proportion to where its registered voters live.<\/span><\/span>\n<span id=\"page-code-5-1-cb1-3\"><a href=\"#page-code-5-1-cb1-3\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-5-1-cb1-4\"><a href=\"#page-code-5-1-cb1-4\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Precinct-to-block file: PCTSRPREC = % of the precinct&#39;s voters on that block<\/span><\/span>\n<span id=\"page-code-5-1-cb1-5\"><a href=\"#page-code-5-1-cb1-5\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>blocks <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">read_csv<\/span>(<span class=\"st\">&quot;data/state_g24_sr_blk_map.csv&quot;<\/span>,<\/span>\n<span id=\"page-code-5-1-cb1-6\"><a href=\"#page-code-5-1-cb1-6\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>                   <span class=\"at\">col_types =<\/span> <span class=\"fu\">cols<\/span>(<span class=\"at\">.default =<\/span> <span class=\"st\">&quot;c&quot;<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-7\"><a href=\"#page-code-5-1-cb1-7\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">share =<\/span> <span class=\"fu\">as.numeric<\/span>(PCTSRPREC) <span class=\"sc\">/<\/span> <span class=\"dv\">100<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-8\"><a href=\"#page-code-5-1-cb1-8\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">select<\/span>(SRPREC_KEY, BLOCK_KEY, share)<\/span>\n<span id=\"page-code-5-1-cb1-9\"><a href=\"#page-code-5-1-cb1-9\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-5-1-cb1-10\"><a href=\"#page-code-5-1-cb1-10\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># AB 604 file has no header row: column 1 = block, column 2 = new district<\/span><\/span>\n<span id=\"page-code-5-1-cb1-11\"><a href=\"#page-code-5-1-cb1-11\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>ab604_blocks <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">read_csv<\/span>(<span class=\"st\">&quot;data/ab604.csv&quot;<\/span>, <span class=\"at\">col_names =<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;BLOCK_KEY&quot;<\/span>, <span class=\"st\">&quot;district&quot;<\/span>),<\/span>\n<span id=\"page-code-5-1-cb1-12\"><a href=\"#page-code-5-1-cb1-12\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>                         <span class=\"at\">col_types =<\/span> <span class=\"fu\">cols<\/span>(<span class=\"at\">.default =<\/span> <span class=\"st\">&quot;c&quot;<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-13\"><a href=\"#page-code-5-1-cb1-13\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">district =<\/span> <span class=\"fu\">as.integer<\/span>(district))<\/span>\n<span id=\"page-code-5-1-cb1-14\"><a href=\"#page-code-5-1-cb1-14\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-5-1-cb1-15\"><a href=\"#page-code-5-1-cb1-15\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># 1. attach each precinct&#39;s votes to its blocks<\/span><\/span>\n<span id=\"page-code-5-1-cb1-16\"><a href=\"#page-code-5-1-cb1-16\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># 2. multiply the votes by the block&#39;s share<\/span><\/span>\n<span id=\"page-code-5-1-cb1-17\"><a href=\"#page-code-5-1-cb1-17\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># 3. look up each block&#39;s new district<\/span><\/span>\n<span id=\"page-code-5-1-cb1-18\"><a href=\"#page-code-5-1-cb1-18\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>alloc <span class=\"ot\">&lt;-<\/span> blocks <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-19\"><a href=\"#page-code-5-1-cb1-19\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">left_join<\/span>(sov_clean <span class=\"sc\">|&gt;<\/span> <span class=\"fu\">select<\/span>(SRPREC_KEY, dem, rep, ind),<\/span>\n<span id=\"page-code-5-1-cb1-20\"><a href=\"#page-code-5-1-cb1-20\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            <span class=\"at\">by =<\/span> <span class=\"st\">&quot;SRPREC_KEY&quot;<\/span>) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-21\"><a href=\"#page-code-5-1-cb1-21\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">dem =<\/span> dem <span class=\"sc\">*<\/span> share,<\/span>\n<span id=\"page-code-5-1-cb1-22\"><a href=\"#page-code-5-1-cb1-22\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">rep =<\/span> rep <span class=\"sc\">*<\/span> share,<\/span>\n<span id=\"page-code-5-1-cb1-23\"><a href=\"#page-code-5-1-cb1-23\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">ind =<\/span> ind <span class=\"sc\">*<\/span> share) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-24\"><a href=\"#page-code-5-1-cb1-24\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">left_join<\/span>(ab604_blocks, <span class=\"at\">by =<\/span> <span class=\"st\">&quot;BLOCK_KEY&quot;<\/span>)<\/span>\n<span id=\"page-code-5-1-cb1-25\"><a href=\"#page-code-5-1-cb1-25\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-5-1-cb1-26\"><a href=\"#page-code-5-1-cb1-26\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># 4. add up the votes in each new district<\/span><\/span>\n<span id=\"page-code-5-1-cb1-27\"><a href=\"#page-code-5-1-cb1-27\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>dist604 <span class=\"ot\">&lt;-<\/span> alloc <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-28\"><a href=\"#page-code-5-1-cb1-28\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">filter<\/span>(<span class=\"sc\">!<\/span><span class=\"fu\">is.na<\/span>(district)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-29\"><a href=\"#page-code-5-1-cb1-29\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">group_by<\/span>(district) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-30\"><a href=\"#page-code-5-1-cb1-30\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">summarise<\/span>(<span class=\"at\">dem =<\/span> <span class=\"fu\">sum<\/span>(dem, <span class=\"at\">na.rm =<\/span> <span class=\"cn\">TRUE<\/span>),<\/span>\n<span id=\"page-code-5-1-cb1-31\"><a href=\"#page-code-5-1-cb1-31\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            <span class=\"at\">rep =<\/span> <span class=\"fu\">sum<\/span>(rep, <span class=\"at\">na.rm =<\/span> <span class=\"cn\">TRUE<\/span>),<\/span>\n<span id=\"page-code-5-1-cb1-32\"><a href=\"#page-code-5-1-cb1-32\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            <span class=\"at\">ind =<\/span> <span class=\"fu\">sum<\/span>(ind, <span class=\"at\">na.rm =<\/span> <span class=\"cn\">TRUE<\/span>)) <span class=\"sc\">|&gt;<\/span><\/span>\n<span id=\"page-code-5-1-cb1-33\"><a href=\"#page-code-5-1-cb1-33\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"fu\">mutate<\/span>(<span class=\"at\">winner =<\/span> <span class=\"fu\">if_else<\/span>(dem <span class=\"sc\">&gt;<\/span> rep, <span class=\"st\">&quot;Democrat&quot;<\/span>, <span class=\"st\">&quot;Republican&quot;<\/span>),<\/span>\n<span id=\"page-code-5-1-cb1-34\"><a href=\"#page-code-5-1-cb1-34\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>         <span class=\"at\">dem_share =<\/span> dem <span class=\"sc\">/<\/span> (dem <span class=\"sc\">+<\/span> rep))<\/span>\n<span id=\"page-code-5-1-cb1-35\"><a href=\"#page-code-5-1-cb1-35\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-5-1-cb1-36\"><a href=\"#page-code-5-1-cb1-36\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><span class=\"co\"># Check: did every vote end up in a district?<\/span><\/span>\n<span id=\"page-code-5-1-cb1-37\"><a href=\"#page-code-5-1-cb1-37\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>votes_before <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(sov_clean<span class=\"sc\">$<\/span>dem <span class=\"sc\">+<\/span> sov_clean<span class=\"sc\">$<\/span>rep <span class=\"sc\">+<\/span> sov_clean<span class=\"sc\">$<\/span>ind)<\/span>\n<span id=\"page-code-5-1-cb1-38\"><a href=\"#page-code-5-1-cb1-38\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>votes_after  <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">sum<\/span>(dist604<span class=\"sc\">$<\/span>dem <span class=\"sc\">+<\/span> dist604<span class=\"sc\">$<\/span>rep <span class=\"sc\">+<\/span> dist604<span class=\"sc\">$<\/span>ind)<\/span>\n<span id=\"page-code-5-1-cb1-39\"><a href=\"#page-code-5-1-cb1-39\" aria-hidden=\"true\" tabindex=\"-1\"><\/a><\/span>\n<span id=\"page-code-5-1-cb1-40\"><a href=\"#page-code-5-1-cb1-40\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>vote_check <span class=\"ot\">&lt;-<\/span> <span class=\"fu\">tibble<\/span>(<\/span>\n<span id=\"page-code-5-1-cb1-41\"><a href=\"#page-code-5-1-cb1-41\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"at\">Step  =<\/span> <span class=\"fu\">c<\/span>(<span class=\"st\">&quot;Votes in the clean precinct data&quot;<\/span>, <span class=\"st\">&quot;Votes in the 52 AB 604 districts&quot;<\/span>,<\/span>\n<span id=\"page-code-5-1-cb1-42\"><a href=\"#page-code-5-1-cb1-42\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            <span class=\"st\">&quot;Votes lost&quot;<\/span>, <span class=\"st\">&quot;Share kept&quot;<\/span>),<\/span>\n<span id=\"page-code-5-1-cb1-43\"><a href=\"#page-code-5-1-cb1-43\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>  <span class=\"at\">Value =<\/span> <span class=\"fu\">c<\/span>(scales<span class=\"sc\">::<\/span><span class=\"fu\">comma<\/span>(votes_before), scales<span class=\"sc\">::<\/span><span class=\"fu\">comma<\/span>(votes_after),<\/span>\n<span id=\"page-code-5-1-cb1-44\"><a href=\"#page-code-5-1-cb1-44\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            scales<span class=\"sc\">::<\/span><span class=\"fu\">comma<\/span>(votes_before <span class=\"sc\">-<\/span> votes_after),<\/span>\n<span id=\"page-code-5-1-cb1-45\"><a href=\"#page-code-5-1-cb1-45\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>            scales<span class=\"sc\">::<\/span><span class=\"fu\">percent<\/span>(votes_after <span class=\"sc\">/<\/span> votes_before, <span class=\"at\">accuracy =<\/span> <span class=\"fl\">0.01<\/span>))<\/span>\n<span id=\"page-code-5-1-cb1-46\"><a href=\"#page-code-5-1-cb1-46\" aria-hidden=\"true\" tabindex=\"-1\"><\/a>)<\/span><\/code><\/pre><\/div>","label":"part-5"}],"page":"Re-running the 2024 Election"}</script>
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>

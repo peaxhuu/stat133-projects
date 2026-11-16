@@ -1,0 +1,4 @@
+- source: project.qmd
+  netlify:
+    - id: a977192d-6368-40ba-a2d7-51e8f05e20c2
+      url: https://teal-gaufre-aaffe6.netlify.app

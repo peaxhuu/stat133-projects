@@ -1,0 +1,421 @@
+---
+title: Your Life in Data
+author: Tsion-Aduesa Smart
+format:
+  revealjs:
+    theme: simple
+    smaller: true
+    slide-number: true
+    footer: "STAT 133 · Project 3"
+    transition: slide
+---
+
+<!--
+How this Deck is Organized
+
+Each part of the project starts with a title slide (a line beginning with
+a single #). Each lettered subpart gets two slides (lines beginning with ##):
+
+1. A results slide, titled with the subpart's letter and title, e.g.
+   "## B. Import". It shows your results only, as an explanatory display:
+   a plot, a table, or a few sentences. Its code cell has `echo: false`,
+   so the code runs but isn't shown. Show what the subpart's "On your
+   slide" line asks for; be ready to answer its numbered questions out loud.
+
+2. A code slide, titled the same with ": Code" added, e.g.
+   "## B. Import: Code". Its chunk has no code of its own. `ref.label`
+   points it at the results slide's code cell (by that cell's `label`), so it
+   shows that code without running it a second time. Leave these cell options
+   as they are.
+
+Subparts with no code (Part 1 A and F, Part 2 F) have a results slide only.
+
+Code slides are marked {.scrollable} so long code still fits. For data frame output, send the data frame through the `gt()` function in the `gt` package to make it display professionally. These slides are very customizable. To really polish them up, read the documentation: https://quarto.org/docs/presentations/revealjs/.
+-->
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(jsonlite)
+library(gt)
+# Load the packages you use here.
+```
+
+# Part 1: Staff YouTube Data
+
+## A. Predict
+
+- **Watch history:** about 5 records: Rosling, Texas Sun (twice), Tú sí sabes quererme, Sinnerman. Unsure: the stalled Rosling page, the CLT preview, and the ads.
+- **Search history:** 4 records: hans rosling 200 countries, 3blue1brown central limit theorem, galton board, hasta la raíz
+- **stat133 playlist:** Rosling, Texas Sun, Tú sí sabes quererme, Central Limit Theorem
+- **Subscriptions:** 3Blue1Brown, Khruangbin
+
+## B. Import
+
+```{r}
+#| label: p1-b
+#| echo: false
+list.files("data-staff/YouTube and YouTube Music", recursive = TRUE)
+
+watches  <- fromJSON("data-staff/YouTube and YouTube Music/history/watch-history.json")
+searches <- fromJSON("data-staff/YouTube and YouTube Music/history/search-history.json")
+playlists     <- read_csv("data-staff/YouTube and YouTube Music/playlists/playlists.csv")
+stat133       <- read_csv("data-staff/YouTube and YouTube Music/playlists/stat133-videos.csv")
+subscriptions <- read_csv("data-staff/YouTube and YouTube Music/subscriptions/subscriptions.csv")
+
+watches |>
+  select(header, title, titleUrl, time) |>
+  head(3) |>
+  gt()
+```
+
+## B. Import: Code {.scrollable}
+
+```{r}
+#| ref.label: p1-b
+#| eval: false
+#| echo: true
+```
+
+## C. Clean
+
+```{r}
+#| label: p1-c
+#| echo: false
+watches <- watches |>
+  unnest(subtitles, keep_empty = TRUE) |>
+  rename(channel = name) |>
+  mutate(
+    title    = str_replace(title, "^Watched ", ""),   # anchor: only at the start
+    video_id = str_extract(titleUrl, "[^=]+$"),        # everything after the last "="
+    artist   = str_replace(title, " - .*", ""),        # drop " - " and everything after
+    song     = str_replace(title, "^[^-]+ - ", "")     # drop everything up to the first " - "
+  )
+
+searches <- searches |>
+  mutate(terms = str_extract(titleUrl, "[^=]+$"))
+
+watches  |> select(title, channel, video_id, artist, song) |> gt()
+searches |> select(title, terms) |> gt()
+```
+
+## C. Clean: Code {.scrollable}
+
+```{r}
+#| ref.label: p1-c
+#| eval: false
+#| echo: true
+```
+
+## D. Check the Times
+
+```{r}
+#| label: p1-d
+#| echo: false
+what_we_did <- tibble(
+  video_id    = c("jbkSRLYSojo", "ABLT6hdgEek", "4IACZdwwJI4", "Whe7MURlKLw"),
+  what_we_did = c("12:50:17", "13:02:34", "13:09:25", "13:15:31")
+)
+
+watches <- watches |>
+  mutate(
+    time    = ymd_hms(time),
+    time_pt = with_tz(time, tzone = "America/Los_Angeles")
+  )
+
+watches |>
+  left_join(what_we_did, by = join_by(video_id)) |>
+  mutate(recorded_pt = format(time_pt, "%H:%M:%S")) |>
+  select(title, recorded_pt, what_we_did) |>
+  arrange(recorded_pt) |>
+  gt()
+```
+
+## D. Check the Times: Code {.scrollable}
+
+```{r}
+#| ref.label: p1-d
+#| eval: false
+#| echo: true
+```
+
+## E. Join
+
+```{r}
+#| label: p1-e
+#| echo: false
+# Saved to stat133 but never watched
+anti_join(stat133, watches, by = join_by(`Video ID` == video_id)) |>
+  select(`Video ID`) |>
+  gt()
+
+# Watched but never saved
+anti_join(watches, stat133, by = join_by(video_id == `Video ID`)) |>
+  select(title, video_id) |>
+  gt()
+
+# Subscriptions joined to watches by channel name
+left_join(subscriptions, watches, by = join_by(`Channel Title` == channel)) |>
+  select(`Channel Title`, title) |>
+  gt()
+```
+
+## E. Join: Code {.scrollable}
+
+```{r}
+#| ref.label: p1-e
+#| eval: false
+#| echo: true
+```
+
+## F. Compare to the Record
+
+**Actions that left no trace:**
+
+- The first Texas Sun watch (12:56), replaced by the replay at 13:15
+- The stalled Rosling page (12:43)
+- The silent CLT preview in the search results
+- All five ads, and skipping the St. Jude ad
+- The Like on Tú sí sabes quererme
+- Pausing Sinnerman and Texas Sun, and when any video ended
+- When each subscription happened, and choosing Khruangbin out of three channels
+
+**What watch history records:** one row per video, at the moment the video itself
+started, keeping only the most recent start and only the uploading channel.
+13 seconds of Sinnerman counts the same as all of Texas Sun.
+
+**For my own data:** a row is not always a play. A rewatch soon after the first
+can replace the earlier row, and a row doesn't tell me how much of a video I watched.
+
+# Part 2: Your App, Your Data
+
+## A. Take Inventory
+
+```{r}
+#| label: p2-a
+#| echo: false
+my_files <- list.files("data/Takeout/YouTube and YouTube Music", recursive = TRUE)
+
+# Count files by format, using regex on the end of each name
+tibble(file = my_files) |>
+  mutate(format = case_when(
+    str_detect(file, "\\.json$") ~ "JSON",
+    str_detect(file, "\\.csv$")  ~ "CSV",
+    TRUE                         ~ "Other"
+  )) |>
+  count(format) |>
+  gt()
+
+# Read the event log and open up the channel column
+events <- fromJSON("data/Takeout/YouTube and YouTube Music/history/watch-history.json")
+nrow(events)
+events <- unnest(events, subtitles, keep_empty = TRUE)
+nrow(events)
+
+events |>
+  select(title, name, time) |>
+  head(5) |>
+  gt()
+```
+
+## A. Take Inventory: Code {.scrollable}
+
+```{r}
+#| ref.label: p2-a
+#| eval: false
+#| echo: true
+```
+
+## B. When Did It Happen?
+
+```{r}
+#| label: p2-b
+#| echo: false
+# Parse the text times, then show them on the Pacific clock
+events <- events |>
+  mutate(
+    time = ymd_hms(time),
+    time = with_tz(time, tzone = "America/Los_Angeles")
+  )
+
+# Start, end, and span of the log
+log_start <- min(events$time)
+log_end   <- max(events$time)
+log_span <- as.duration(log_end - log_start)
+span_days <- round(log_span / ddays(1))
+
+events |>
+  count(day = wday(time, label = TRUE), hour = hour(time)) |>
+  ggplot(aes(x = hour, y = day, fill = n)) +
+  geom_tile() +
+  labs(
+    title    = "When I Watch YouTube",
+    subtitle = paste("From", format(log_start, "%b %d, %Y"),
+                     "to",   format(log_end, "%b %d, %Y"),
+                     "| span:", span_days, "days (~1.65 years)"),
+    x = "Hour of day (Pacific time)",
+    y = "",
+    fill = "Videos"
+  ) +
+  theme_minimal()
+```
+
+## B. When Did It Happen?: Code {.scrollable}
+
+```{r}
+#| ref.label: p2-b
+#| eval: false
+#| echo: true
+```
+
+## C. What Did You Do?
+
+```{r}
+#| label: p2-c
+#| echo: false
+events <- events |>
+  filter(str_detect(title, "^Watched ")) |>
+  mutate(
+    song = str_replace(title, "^Watched ", ""),
+    song = tolower(song),
+    song = str_replace(song, " \\((official|lyric|audio|visualizer)[^)]*\\)", "")
+  ) |>
+  filter(!str_detect(song, "^https"))
+
+top10 <- events |>
+  count(song, sort = TRUE) |>
+  head(10)
+
+top10 |>
+  ggplot(aes(x = n, y = fct_reorder(song, n))) +
+  geom_col(fill = "steelblue") +
+  labs(
+    title = "My Most-Watched Videos",
+    subtitle = "After removing \"Watched\", case differences, and official-video tags",
+    x = "Times watched",
+    y = ""
+  ) +
+  theme_minimal()
+```
+
+## C. What Did You Do?: Code {.scrollable}
+
+```{r}
+#| ref.label: p2-c
+#| eval: false
+#| echo: true
+```
+
+## D. Was I in Class?
+
+```{r}
+#| label: p2-d
+#| echo: false
+schedule <- tibble(
+  day = c("Mon", "Wed", "Fri", "Mon", "Mon", "Wed", "Fri", "Tue", "Tue", "Thu", "Tue"),
+  course = c("Stat 133", "Stat 133", "Stat 133", "Stat 133",
+             "Stat 135", "Stat 135", "Stat 135", "Stat 135",
+             "Stat 153", "Stat 153", "Stat 153"),
+  start = c(8.5, 8.5, 8.5, 14, 11, 11, 11, 10, 18.5, 18.5, 14),
+  end   = c(9.5, 9.5, 9.5, 16, 12, 12, 12, 12, 20, 20, 16)
+)
+
+events <- events |>
+  mutate(
+    day      = as.character(wday(time, label = TRUE)),
+    clock    = hour(time) + minute(time) / 60,
+    event_id = row_number()
+  )
+
+joined <- left_join(events, schedule, by = join_by(day),
+                    relationship = "many-to-many")
+
+in_class <- joined |>
+  filter(
+    clock >= start, clock <= end,
+    time >= ymd_hms("2026-08-26 00:00:00", tz = "America/Los_Angeles"),
+    time <= ymd_hms("2026-12-12 23:59:59", tz = "America/Los_Angeles")
+  )
+
+joined |>
+  filter(!is.na(course)) |>
+  group_by(course) |>
+  summarize(videos_during_class = sum(
+    clock >= start & clock <= end &
+    time >= ymd_hms("2026-08-26 00:00:00", tz = "America/Los_Angeles") &
+    time <= ymd_hms("2026-12-12 23:59:59", tz = "America/Los_Angeles")
+  )) |>
+  gt()
+```
+
+## D. Was I in Class?: Code {.scrollable}
+
+```{r}
+#| ref.label: p2-d
+#| eval: false
+#| echo: true
+```
+
+## E. Your Question
+How has PinkPantheress's share of my YouTube watching changed over time?
+
+```{r}
+#| label: p2-e
+#| echo: false
+#| fig-height: 4
+pp_monthly <- events |>
+  mutate(
+    month = make_datetime(year = year(time), month = month(time), day = 1),
+    is_pp = str_detect(song, "pinkpantheress")
+  ) |>
+  group_by(month) |>
+  summarize(share = mean(is_pp))
+
+pp_monthly |>
+  ggplot(aes(x = month, y = share)) +
+  geom_line(color = "hotpink") +
+  geom_point(color = "hotpink") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_x_datetime(date_labels = "%b %Y") +
+  labs(
+    title = "How Much of My YouTube Is PinkPantheress?",
+    subtitle = "Share of videos watched each month with PinkPantheress in the title",
+    x = "Month",
+    y = "Share of videos watched"
+  ) +
+  theme_minimal()
+``` 
+
+::: {.notes}
+**Answer:** She jumped from about 2% of my videos in early 2025 to a peak of
+about 12% in June 2025, around when Fancy That came out, then settled to a
+steady 3–6%, with smaller spikes in May and August 2026.
+
+**Limitation:** this only counts titles that name her, so uploads like
+"Tonight" with no artist are missed, and Feb 2025 and Oct 2026 are partial months.
+:::
+
+## E. Your Question: Code {.scrollable}
+
+```{r}
+#| ref.label: p2-e
+#| eval: false
+#| echo: true
+```
+
+## F. What Do They Know?
+
+**What YouTube could guess about me:**
+
+- **When I sleep:** I almost never watch between 2 and 7 am
+- **My routine:** busiest on weekend afternoons and weekday evenings
+- **What I like:** PinkPantheress most of all, plus Slayyyter, Charli xcx, and EDEN
+- **My habits:** I replay songs dozens of times and binge new albums
+
+**Easiest guess to get wrong:** whether I'm paying attention. YouTube only knows
+a video started. Most of mine are songs playing in the background, so
+"57 videos during Stat 153" doesn't mean I was ignoring class.
+
+**Would I ask them to delete anything?** Yes, my comments and live-chat messages.
+I wrote those for one moment, not to be saved forever on my account.

@@ -1,0 +1,29 @@
+[{
+  "header": "YouTube",
+  "title": "Searched for hasta la raíz",
+  "titleUrl": "https://www.youtube.com/results?search_query\u003dhasta+la+ra%C3%ADz",
+  "time": "2026-10-10T20:14:48.617Z",
+  "products": ["YouTube"],
+  "activityControls": ["YouTube search history"]
+},{
+  "header": "YouTube",
+  "title": "Searched for galton board",
+  "titleUrl": "https://www.youtube.com/results?search_query\u003dgalton+board",
+  "time": "2026-10-10T20:14:29.694Z",
+  "products": ["YouTube"],
+  "activityControls": ["YouTube search history"]
+},{
+  "header": "YouTube",
+  "title": "Searched for 3blue1brown central limit theorem",
+  "titleUrl": "https://www.youtube.com/results?search_query\u003d3blue1brown+central+limit+theorem",
+  "time": "2026-10-10T20:09:51.536Z",
+  "products": ["YouTube"],
+  "activityControls": ["YouTube search history"]
+},{
+  "header": "YouTube",
+  "title": "Searched for hans rosling 200 countries",
+  "titleUrl": "https://www.youtube.com/results?search_query\u003dhans+rosling+200+countries",
+  "time": "2026-10-10T19:43:20.690Z",
+  "products": ["YouTube"],
+  "activityControls": ["YouTube search history"]
+}]
